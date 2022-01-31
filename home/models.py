@@ -108,6 +108,7 @@ class QuizFinal(models.Model):
     nameOfQuiz=models.CharField(max_length=100)
     bool=models.BooleanField(default=None)
     code=models.UUIDField(default=uuid.uuid4)
+    quizTimer=models.IntegerField(default=10)
     def __str__(self):
         return '%s' %(self.nameOfQuiz)
 
@@ -116,6 +117,7 @@ class QuestionFinal(models.Model):
     # que=models.CharField(max_length=100)
     # que=models.CharField(max_length=100)
     # que=models.CharField(max_length=100)
+    questionTimer=models.IntegerField(default=10)
     que=RichTextField(default=" ")
     number = models.IntegerField()
     op1=RichTextField(default=" ")

@@ -151,7 +151,7 @@ def quizQuery(request):
                         if(i!=None):
                             optionHere.append(i)
                     print(len(optionHere))
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0})
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer})
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -255,6 +255,7 @@ def handleImportSpreadsheet(request):
         for i in range(len(imported_data['Question Text'])):
             if(imported_data['Question Text'][i] is not None):
                 options=[]
+                timer=imported_data['Time in seconds'][i]
                 if(imported_data['Option 1'][i] is not None):
                     options.append(imported_data['Option 1'][i])
                 if(imported_data['Option 2'][i] is not None):
@@ -263,20 +264,22 @@ def handleImportSpreadsheet(request):
                     options.append(imported_data['Option 3'][i])
                 if(imported_data['Option 4'][i] is not None):
                     options.append(imported_data['Option 4'][i])
+                
+               
                 if(len(options)==0):
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer)
                     question1.save()
                 elif len(options)==1:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1, questionTimer=timer)
                     question1.save()
                 elif len(options)==2:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1, questionTimer=timer)
                     question1.save()
                 elif len(options)==3:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1, questionTimer=timer)
                     question1.save()
                 elif len(options)==4:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer)
                     question1.save()
         return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
 
@@ -352,6 +355,7 @@ def handleNextQuestion(request):
                 if(i!=" " and len(i)!=0):
                     optionHere.append(i)
             print(len(optionHere))
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index})
+            print(questions[index].questionTimer)
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer})
         else:
             return render(request,"index.html")

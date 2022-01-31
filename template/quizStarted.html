@@ -49,8 +49,13 @@
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;right:10px;">
-            <h2 class="center">Timer</h2>
-              
+            <h2 class="center" id="queT">{{timer}}</h2>
+              <script>
+                var x=document.getElementById('queT');
+                var y=1000*x;
+                setInterval(function () {document.getElementById("savenext").click();}, y);
+
+              </script>
               
             <div class="floating-label">
                       
@@ -73,7 +78,7 @@
               <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
               <input type="hidden" id="questionIndex" name="questionIndex" value={{questionIndex}}>
 
-              <a href="/handleNextQuestion"><button class="btn" style="position:absolute;right:20px;bottom:20px;">Save&Next</button></a>
+              <a href="/handleNextQuestion"><button id="savenext" class="btn" style="position:absolute;right:20px;bottom:20px;">Save&Next</button></a>
             </form>
           </div>
     </body>
