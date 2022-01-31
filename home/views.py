@@ -360,6 +360,6 @@ def handleNextQuestion(request):
                     optionHere.append(i)
             print(len(optionHere))
             print(questions[index].questionTimer)
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer})
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":quiz2.quizTimer})
         else:
             return render(request,"index.html")
