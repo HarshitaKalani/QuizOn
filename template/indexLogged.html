@@ -1,0 +1,917 @@
+<!DOCTYPE html><html class="menu">
+<html>
+
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content=="IE=edge"/>
+<meta name="google" value="notranslate"/>
+<title>Side Menu</title>
+
+
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="static\assets\login\boxHere.css" rel="stylesheet">
+
+
+  <style>
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 0fr);
+    }
+    body
+    {
+      margin:0px;
+      padding:0px;
+        font-family: "Open Sans", arial;
+        {% comment %} background:url('https://static.tumblr.com/94eb957a00fd03c0c2f7d26decd71578/u1rhacw/osAmyyh1q/tumblr_static_tumblr_static_gaussian_blur_gradient_desktop_1680x943_wallpaper-393751.jpg'); {% endcomment %}
+        color:#fff;
+        font-weight:300;
+    
+    }
+    
+    
+    @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+    }
+    @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+    
+    .logo{
+      background-color: whtite;
+    }
+    
+    .settings {
+      
+      height:200px; 
+      float:left;
+      background:url( https://s3.postimg.org/bqfooag4z/startific.jpg);
+      background-repeat:no-repeat;
+      width:250px;
+      margin:0px;
+     text-align: center;
+    font-size:20px;
+    font-family: 'Strait', sans-serif;
+    
+    }
+    .pfp {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background: white;
+        display: inline-block;
+        position: absolute;
+        left:80px;
+        top: 5px;
+      }
+      .pfpName{
+          position: relative;
+          top: 92px;
+          color: black;
+      }
+      .pfpButton{
+        position: relative;
+        top: 75px;
+        color: black;
+    }
+    
+    
+    
+    
+    
+    /* ScrolBar  */
+    .scrollbar
+    {
+    
+    height: 90%;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    }
+    
+    .scrollbar:hover
+    {
+    
+    height: 90%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    }
+    
+    /* Scrollbar Style */ 
+    
+    
+    
+    #style-1::-webkit-scrollbar-track
+    {
+    border-radius: 2px;
+    }
+    
+    #style-1::-webkit-scrollbar
+    {
+    width: 5px;
+    background-color: #F7F7F7;
+    }
+    
+    #style-1::-webkit-scrollbar-thumb
+    {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #BFBFBF;
+    }
+    /* Scrollbar End */ 
+    
+    
+    
+    
+    .fa-lg {
+    font-size: 10em;
+      
+    }
+    .fa {
+    position: relative;
+    display: table-cell;
+    width: 55px;
+    height: 36px;
+    text-align: center;
+    top:12px; 
+    font-size:20px;
+    
+    }
+    
+    
+    
+    .main-menu:hover, nav.main-menu.expanded {
+    width:250px;
+    overflow:hidden;
+    opacity:1;
+    
+    }
+    
+    .main-menu {
+    background:#F7F7F7;
+    position:absolute;
+    top:0;
+    bottom:0;
+    height:100%;
+    left:0;
+    width:55px;
+    overflow:hidden;
+    -webkit-transition:width .2s linear;
+    transition:width .2s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07);
+      opacity:1;
+    }
+    
+    .main-menu>ul {
+    margin:7px 0;
+    
+    }
+    
+    .main-menu li {
+    position:relative;
+    display:block;
+    width:250px;
+      
+    
+    
+    }
+    
+    .main-menu li>a {
+    position:relative;
+    width:255px;
+    display:table;
+    border-collapse:collapse;
+    border-spacing:0;
+    {% comment %} color:#8a8a8a; {% endcomment %}
+    font-size: 13px;
+    text-decoration:none;
+    -webkit-transform:translateZ(0) scale(1,1);
+    -webkit-transition:all .14s linear;
+    transition:all .14s linear;
+    font-family: 'Strait', sans-serif;
+    border-top:1px solid #f2f2f2;
+    
+    {% comment %} text-shadow: 1px 1px 1px  #fff;   {% endcomment %}
+    }
+    
+    
+    
+    .main-menu .nav-icon {
+      
+    position:relative;
+    display:table-cell;
+    width:55px;
+    height:36px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+    
+    }
+    
+    .main-menu .nav-text  {
+       
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    width:190px;
+    color: black;
+    }
+    
+    .main-menu .share {
+    }
+    
+    
+    
+    .main-menu .fb-like {
+    
+    left: 180px;
+    position:absolute;
+    top: 15px;
+    }
+    
+    .main-menu>ul.logout {
+    position:absolute;
+    left:0;
+    bottom:0;
+      
+    }
+    
+    .no-touch .scrollable.hover {
+    overflow-y:hidden;
+    
+    }
+    
+    .no-touch .scrollable.hover:hover {
+    overflow-y:auto;
+    overflow:visible;
+      
+    }
+    
+    
+    /* Logo Hover Property */
+    
+    
+    .settings:hover, settings:focus {   
+      background:url( https://s17.postimg.org/74cl7s05b/logo_hover.jpg);
+      -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    -o-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0; 
+    }
+    
+    .settings:active, settings:focus {   
+      background:url( https://s3.postimg.org/bqfooag4z/startific.jpg);
+      -webkit-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    -moz-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    -o-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0; 
+    }
+    
+    
+    a:hover,a:focus {
+    text-decoration:none;
+    border-left:0px solid #F7F7F7;
+    
+    
+    
+    }
+    
+    nav {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+      
+    }
+    
+    nav ul,nav li {
+    outline:0;
+    margin:0;
+    padding:0;
+    text-transform: uppercase;
+    }
+    
+    
+    
+    
+    /* Darker element side menu Start*/
+    
+    
+    .darkerli
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    }
+    
+    .darkerlishadow
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    -webkit-box-shadow: inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    -moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    }
+    button {
+      -webkit-appearance: none;
+      width: auto;
+      min-width: 100px;
+      border-radius: 24px;
+      text-align: center;
+      padding: 15px 40px;
+      margin-top: 5px;
+      background-color: #b08bf8;
+      color: #fff;
+      font-size: 14px;
+      margin-left: auto;
+      font-weight: 500;
+      box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+      border: none;
+      transition: all 0.3s ease;
+      outline: 0;
+    }
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
+    }
+    button:hover:active {
+      transform: scale(0.99);
+    }
+    
+    .darkerlishadowdown
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    -webkit-box-shadow: inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    -moz-box-shadow:    inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    box-shadow:         inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    }
+    
+    /* Darker element side menu End*/
+    
+    
+    
+    
+    .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+    color:#fff;
+    background-color:#00bbbb;
+    text-shadow: 0px 0px 0px; 
+    }
+    .area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+    }
+    @font-face {
+      font-family: 'Titillium Web';
+      font-style: normal;
+      font-weight: 300;
+      src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+    }
+    .colorBackGround{
+      background-color: white;
+    }
+    
+    
+    header {
+      height: 70px;
+      padding: 0 25px;
+      position: fixed;
+      width: 100%;
+      z-index: 3;
+      background-color: #ffffff;
+      left: 241px;
+      top: 0;
+      box-shadow: 0 10px 20px -7px rgb(160 44 219 / 7%);
+  }
+  .daily-ui-logo {
+    margin-top: 15px;
+}
+.main-navigation {
+  float: right;
+  position: relative;
+  right: 251px;
+}
+.nav-menu-item.active, .nav-menu-item:hover {
+  color: #242E4C;
+}
+a:link, a :visited, a :hover, a :active {
+  text-decoration: none;
+  outline: 0;
+}
+.nav-menu-item {
+  margin-left: 40px;
+  font-size: 14px;
+  color: #7D7A9E;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  line-height: 70px;
+}
+
+element.style {
+}
+
+.nav-menu-item.active, .nav-menu-item:hover {
+    color: #242E4C;
+}
+
+a:link, a :visited, a :hover, a :active {
+    text-decoration: none;
+    outline: 0;
+}
+
+.nav-menu-item {
+    margin-left: 40px;
+    font-size: 14px;
+    color: #7D7A9E;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    line-height: 70px;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+    text-decoration: none;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.fixed-height-desktop[data-v-a95c51c0] {
+  height: 224px;
+}
+media (min-width: 1025px)
+
+.md\:pt-0 {
+    padding-top: 0px;
+}
+.pt-8 {
+  padding-top: 2rem;
+}
+.bg-light {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+.w-full {
+  width: 100%;
+}
+.flex {
+  display: flex;
+}
+.relative {
+  position: relative;
+}
+*, ::before, ::after {
+  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+}
+*, ::before, ::after {
+  --tw-shadow: 0 0 #0000;
+}
+
+
+*, ::before, ::after {
+  border-color: currentColor;
+}
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+, ::before, ::after {
+  box-sizing: border-box;
+}
+div {
+  display: block;
+}
+.bg-light-1 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(242, 242, 242, var(--tw-bg-opacity));
+}
+.border-light-1 {
+  --tw-border-opacity: 1;
+  border-color: rgba(242, 242, 242, var(--tw-border-opacity));
+}
+.font-sans {
+  font-family: Open Sans, sans-serif, Helvetica, Arial, Symbola;
+}
+@media (min-width: 1025px)
+
+.md\:block {
+    display: block;
+}
+.text-dark-2 {
+  --tw-text-opacity: 1;
+  color: rgba(34, 34, 34, var(--tw-text-opacity));
+}
+.font-semibold {
+  font-weight: 600;
+}
+.text-6xl {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  letter-spacing: -0.025em;
+}
+
+.text-center {
+  text-align: center;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mt-24 {
+  margin-top: 6rem;
+}
+@media (min-width: 1025px)
+
+.md\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+@media (min-width: 1025px)
+
+.md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+@media (min-width: 1025px)
+
+.md\:w-9\/12 {
+    width: 75%;
+}
+.shadow-soft-low {
+  --tw-shadow: 0px 0px 2px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.p-0 {
+  padding: 0px;
+}
+.bg-light-3 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+.rounded-64 {
+  border-radius: 4rem;
+}
+.items-center {
+  align-items: center;
+}
+.w-11\/12 {
+  width: 91.666667%;
+}
+.w-full {
+  width: 100%;
+}
+.border-radius-inherit[data-v-18b5775b] {
+  border-radius: inherit;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+.w-full {
+  width: 100%;
+}
+.relative {
+  position: relative;
+}
+.border-radius-inherit[data-v-18b5775b] {
+  border-radius: inherit;
+}
+
+
+.relative {
+  position: relative;
+}
+element.style {
+  display: none;
+}
+
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgba(236, 11, 67, var(--tw-text-opacity));
+}
+  </style>
+ 
+
+
+
+</head>
+<body>
+
+  <header>
+
+<a href="/">
+    <img class="daily-ui-logo" src="static/hp.jpg" width="100" height="50" alt="UI Design Daily Logo">
+
+</a>
+
+<nav class="main-navigation">
+
+    
+
+    <a id="main-nav-about-btn" class="nav-menu-item" href="/CreateQuiz">{{CreateQuiz}}</a>
+
+    <!--<a id="main-nav-blog-btn" class="nav-menu-item" href="https://blog.uidesigndaily.com/" target="_blank">Blog</a>-->
+
+    <a id="main-nav-contact-btn" class="nav-menu-item" href="/contact">Contact</a>
+
+</nav>
+
+<div id="main-nav-open-menu-btn" class="mobile-menu-icon"></div>
+
+</header>
+<div data-v-a95c51c0="" class="flex justify-center bg-light items-center pt-8 md:pt-0 flex-col w-full relative fixed-height-desktop"><div data-v-a95c51c0="" class="text-6xl text-dark-2 text-center font-semibold mb-8 mt-24 hidden md:block"><span data-v-a95c51c0="" class="_i18n-container">{{ContentDescription}}</span></div> 
+<div data-v-a95c51c0="" class="flex items-center bg-light-3 shadow-soft-low rounded-64 w-11/12 md:w-9/12 relative p-0 md:py-3 md:px-6 px-4 mt-8"><div data-v-a95c51c0="" class="w-full"><div data-v-18b5775b="" class="flex-grow relative w-full border-radius-inherit"><div data-v-18b5775b="" class="relative border-radius-inherit"><div data-v-18b5775b="" class="w-6 h-6 flex items-center justify-center absolute left-2 top-2 text-dark-4"><p style="color:black; position:absolute; font-size:30px;" class="text-center"> {{YourQuizes}}</p></div>  <div data-v-18b5775b="" class="w-6 h-6 flex items-center justify-center absolute right-2 top-2"><i data-v-18b5775b="" class="far fa-chevron-right text-dark-4 cursor-pointer" style="font-size: 20px;"></i></div></div> <div data-v-18b5775b="" aria-live="assertive" class="flex text-red text-xs font-semibold pt-1" style="display: none;"><span data-v-18b5775b="" class="w-4 h-4 flex items-center justify-center mr-0.5"><i data-v-18b5775b="" class="far fa-exclamation-circle" style="font-size: 11px;"></i></span> <span data-v-18b5775b="" id="input-error-message">
+      
+</span></div></div> </div></div></div>
+ <div class="wrapper" style="color:black;position:absolute;left:250px;">
+  {% comment %} <div class="grid-item mt-10" style="color:black;left:100px;"> {% endcomment %}
+    
+        {% for i in quizes %}
+        
+          <div class="box">
+            {% for j in i %}
+            <p style="font-size:15px;text-align:left;">Name: {{j.nameOfQuiz}}</p>
+            <p style="font-size:15px;text-align:left;">isActive: {{j.bool}}</p>
+           
+            {% if j.bool %}
+            <form method="post" action="/handleEndQuiz" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizCheck" name="quizCheck" value={{j.code}}>
+              <a href="/handleEndQuiz"><button type="submit" class="btn center">End Quiz</button></a>
+            </form>
+            {% else %}
+            <form method="post" action="/handleStartQuiz" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizCheck" name="quizCheck" value={{j.code}}>
+              <a href="/handleStartQuiz"><button type="submit" class="btn center">Start Quiz</button></a> 
+              
+            </form>
+            {% endif %}
+            {% if j.bool %}
+          
+            <p style="font-size:15px;text-align:left;">Code: {{j.code}}</p>
+
+            {% endif %}
+            {% endfor %}  
+          </div>
+        
+        {% endfor %}
+      
+  {% comment %} </div> {% endcomment %}
+</div>
+{% comment %} <div class="wrapper" style="color:black;position:absolute;left:250px;width:100%;">
+  <div>One</div>
+  <div>Two</div>
+  <div>Three</div>
+  <div>Four</div>
+  <div>Five</div>
+  <div>Six</div>
+  <div>Seven</div>
+  <div>Eight</div>
+</div> {% endcomment %}
+    
+{% comment %} <div class="grid-container" style="color:black;">
+  <div class="grid-item" style="color:black;left:100px;">
+    <div class="box">
+      <h2 class="center">Check</h2>  
+  </div>
+{% endcomment %}
+  </div>
+ 
+</div>
+<div>
+  <nav class="main-menu colorBackGround">
+
+
+
+<div class="settings">
+    <img src="static/iitj logo.jpg" class="pfp center">
+    <p style="color:black" class="pfpName text-center">{{username}}</p>
+    <a href="/CreateQuiz"><button  class="pfpButton center">{{CreateQuiz}}</button></a>
+</div>
+<div class="scrollbar" id="style-1">
+      
+<ul>
+  
+<li>                                   
+<a href="/">
+<i class="fa fa-home fa-lg"></i>
+<span class="nav-text">Home</span>
+</a>
+</li>   
+
+
+
+   
+<li>                                 
+<a href="/login">
+<i class="fa fa-user fa-lg"></i>
+<span class="nav-text">LogOut</span>
+</a>
+</li>   
+
+    
+<li>                                 
+<a href="http://startific.com">
+<i class="fa fa-envelope-o fa-lg"></i>
+<span class="nav-text">Contact</span>
+</a>
+</li>   
+  
+
+
+ 
+{% comment %} <li>
+<a href="http://startific.com">
+<i class="fa fa-heart-o fa-lg"></i>
+                        
+<span class="share"> 
+
+
+<div class="addthis_default_style addthis_32x32_style">
+  
+<div style="position:absolute;
+margin-left: 56px;top:3px;"> 
+   
+  
+
+  
+ <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="share-popup"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png" width="30px" height="30px"></a>
+
+   <a href="https://twitter.com/share" target="_blank" class="share-popup"><img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/512/Twitter_alt.png" width="30px" height="30px"></a>
+
+   
+
+
+<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=_URL_&title=_TITLE_
+" target="_blank" class="share-popup"><img src="http://icons.iconarchive.com/icons/danleech/simple/512/google-plus-icon.png" width="30px" height="30px"></a>   
+  
+  
+  
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ff17589278d8b3a"></script>
+                       
+                            
+                              
+                            
+                          
+                        </span>
+                        <span class="twitter"></span>
+                        <span class="google"></span>
+                        <span class="fb-like">  
+<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fstartific&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:35px;" allowTransparency="true"></iframe>
+                       
+                        </span>
+                        <span class="nav-text">
+                        </span>
+                        
+                    </a>
+
+</li> {% endcomment %}
+                            
+
+  
+  
+{% comment %} </li> {% endcomment %}
+<li >
+<a href="http://startific.com">
+<i class="fa fa-clock-o fa-lg"></i>
+<span class="nav-text">News</span>
+</a>
+</li>
+  
+{% comment %} <li class="darkerlishadow">
+<a href="http://startific.com">
+<i class="fa fa-desktop fa-lg"></i>
+<span class="nav-text">Technology</span>
+</a>
+</li>
+
+<li class="darkerli">
+    <a href="http://startific.com">
+    <i class="fa fa-desktop fa-lg"></i>
+    <span class="nav-text">Technology</span>
+    </a>
+    </li> {% endcomment %}
+{% comment %}
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-plane fa-lg"></i>
+<span class="nav-text">Travel</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-shopping-cart"></i>
+ <span class="nav-text">Shopping</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-microphone fa-lg"></i>
+<span class="nav-text">Film & Music</span>
+</a>
+</li>
+
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-flask fa-lg"></i>
+<span class="nav-text">Web Tools</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-picture-o fa-lg"></i>
+<span class="nav-text">Art & Design</span>
+</a>
+</li>
+
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-align-left fa-lg"></i>
+<span class="nav-text">Magazines
+</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-gamepad fa-lg"></i>
+<span class="nav-text">Games</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a href="http://startific.com">
+<i class="fa fa-glass fa-lg"></i>
+<span class="nav-text">Life & Style
+</span>
+</a>
+</li>
+  
+<li class="darkerlishadowdown">
+<a href="http://startific.com">
+<i class="fa fa-rocket fa-lg"></i>
+<span class="nav-text">Fun</span>
+</a>
+</li>
+ 
+  
+</ul>
+
+  
+<li>
+                                   
+<a href="http://startific.com">
+<i class="fa fa-question-circle fa-lg"></i>
+<span class="nav-text">Help</span>
+</a>
+</li>   
+    
+  
+<ul class="logout">
+<li>
+                   <a href="http://startific.com">
+                         <i class="fa fa-lightbulb-o fa-lg"></i>
+                        <span class="nav-text">
+                            BLOG 
+                        </span>
+                        
+                    </a>
+</li>  
+</ul>
+        </nav>
+         {% endcomment %}
+  
+
+			
+  
+  
+</body>
+</html>

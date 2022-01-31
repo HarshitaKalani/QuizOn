@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    element.style {
+        display: block;
+      }
+      .sign-up-banner-container {
+        height: auto;
+        box-shadow: 0 20px 30px -19px rgb(160 44 219 / 58%);
+        border-radius: 15px;
+        left:24px;
+        background: url(./public/img/left-circles.svg) no-repeat left bottom,linear-gradient(
+      90deg, #BA81FF 0%, #FF6A95 99%);
+        margin: 90px 25px 0;
+        position: relative;
+        padding: 20px;
+        color: #ffffff;
+        display: none;
+      }
+      html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        vertical-align: baseline;
+        font: inherit;
+      }
+      *, *::after, *::before {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+      section {
+        display: block;
+      }
+      body {
+        font-family: "Muli", sans-serif;
+        color: #242E4C;
+      }
+      html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      .daily-counter {
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 12px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+      }
+      .daily-counter p {
+        display: block;
+      }
+      .daily-counter p {
+        display: block;
+      }
+      .bold {
+        font-weight: 700;
+      }
+      .l-font-size {
+        font-size: 18px;
+      }
+      p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+      }
+      .daily-counter {
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 12px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+      }
+      element.style {
+        opacity: 0;
+      }
+      .subscribe-error-message {
+        opacity: 0;
+        font-size: 12px;
+        margin-bottom: 10px;
+        text-align: left;
+        border-radius: 25px;
+        background-color: #ffffff;
+        color: #F775C1;
+        padding: 3px 10px;
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+      }
+      .banner-content-container {
+        text-align: center;
+      }
+      .sign-up-banner-container {
+        height: auto;
+        box-shadow: 0 20px 30px -19px rgb(160 44 219 / 58%);
+        border-radius: 15px;
+        background: url(./public/img/left-circles.svg) no-repeat left bottom,linear-gradient(
+      90deg, #BA81FF 0%, #FF6A95 99%);
+        margin: 90px 25px 0;
+        position: relative;
+        padding: 20px;
+        color: #ffffff;
+        display: none;
+      }
+      
+      .banner-content-container .xs-font-size {
+          margin-bottom: 10px;
+      }
+      .xs-font-size {
+        font-size: 12px;
+      }
+      .bold {
+        font-weight: 700;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      .banner-content-container .input-wrapper {
+        max-width: 410px;
+        margin: 20px auto 10px;
+        overflow: hidden;
+      }
+      
+      element.style {
+      }
+      <style>
+      .banner-content-container .input-wrapper {
+          max-width: 410px;
+          margin: 20px auto 10px;
+          overflow: hidden;
+      }
+      <style>
+      html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          vertical-align: baseline;
+          font: inherit;
+      }
+      <style>
+      *, *::after, *::before {
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+      user agent stylesheet
+      div {
+          display: block;
+      }
+      .banner-content-container {
+          text-align: center;
+      }
+      .banner-content-container .banner-input {
+        width: calc(100% - 155px);
+        display: inline-block;
+        float: left;
+      }
+      .banner-input {
+        background-color: rgba(81,33,111,0.25);
+        border-radius: 5px;
+        padding: 10px 15px;
+        width: 100%;
+        color: #ffffff;
+        border: 1px solid transparent;
+        transition: border 0.3s ease-in-out;
+      }
+      input {
+        -webkit-writing-mode: horizontal-tb !important;
+        font-style: ;
+        font-variant-ligatures: ;
+        font-variant-caps: ;
+        font-variant-numeric: ;
+        font-variant-east-asian: ;
+        font-weight: ;
+        font-stretch: ;
+        font-size: ;
+        font-family: ;
+        text-rendering: auto;
+        color: -internal-light-dark(black, white);
+        letter-spacing: normal;
+        word-spacing: normal;
+        line-height: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: auto;
+        -webkit-rtl-ordering: logical;
+        cursor: text;
+        background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+        margin: 0em;
+        padding: 1px 2px;
+        border-width: 2px;
+        border-style: inset;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-image: initial;
+      }
+      input, textarea, button {
+        -webkit-appearance: none;
+        border-radius: 0;
+      }
+      button, input, select {
+        line-height: normal;
+        outline: none;
+        border: none;
+      }
+      button, input, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        margin: 0;
+        resize: none;
+      }
+      *, *::after, *::before {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+      .banner-content-container .primary-btn {
+        max-width: 140px;
+        float: right;
+        right: 155px;
+      }
+      
+      .primary-btn {
+        display: inline-block;
+        max-width: 150px;
+        position: relative;
+        margin-left: 1%;
+      }
+      .primary-btn {
+        border: 1px solid rgba(255,255,255,0.5);
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 11px 15px;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        t ext-align: center;
+      }
+</style>
+{% endblock head %}
+{% block body %}
+<section class="sign-up-banner-container" style="display: block;">
+
+    <div class="daily-counter">
+
+        <p class="daily-counter-label">DAY</p>
+
+        <p id="ui-day-count" class="day-number l-font-size bold">1517</p>
+
+    </div>
+
+    <div id="banner-subscribe-email-error" class="subscribe-error-message" style="opacity: 0;">Please enter your email address.</div>
+
+
+    <div class="banner-content-container">
+
+        <p class="xs-font-size">Get Ready For An Amazing Quiz Experience</p>
+
+        <h1 class="bold">Weekly Quizes available for practice</h1>
+
+        <div class="input-wrapper">
+
+
+            <div id="banner-subscribe-btn" class="primary-btn">Stay Motivated</div>
+
+        </div>
+
+
+    </div>
+
+</section>
+{% endblock body %}

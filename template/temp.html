@@ -1,0 +1,104 @@
+<html>
+    <head>
+        {% comment %} <link rel="stylesheet" type="text/css" href="static\assets\temp\tempbox.css" > {% endcomment %}
+        <style>
+          body {
+               overflow: hidden;
+               margin: 0;
+               padding: 0;
+               width: 100vw;
+               height: 100vh;
+           }
+           
+           #filters {
+               display: flex;
+               align-items: center; 
+               justify-content: center;
+               flex-direction: row;
+               height: 100%;
+               flex-wrap: wrap;
+           }
+           
+           .filter {
+               border: 2px solid;
+               border-radius: 5px;
+               padding: 5px;
+               text-decoration: none;
+               margin: 5px;
+           }
+           
+           .filter:hover {
+               color: #ffffff;
+           }
+           
+           .drupal {
+               color: #009CDE;
+           }
+           
+           .drupal:hover {
+               background-color: #009CDE;
+               border-color: #009CDE;
+           }
+           
+           .html {
+               color: #e54d26;
+           }
+           
+           .html:hover {
+               background-color: #e54d26;
+               border-color: #e54d26;
+           }
+           
+           .css {
+               color: #006fb9;
+           }
+           
+           .css:hover {
+               background-color: #006fb9;
+               border-color: #006fb9;
+           }
+           
+           .js {
+               color: #f7db53;
+           }
+           
+           .js:hover {
+               background-color: #f7db53;
+               border-color: #f7db53;
+           }
+           
+           .bootstrap {
+               color: #7952B3;
+           }
+           
+           .bootstrap:hover {
+               background-color: #7952B3;
+               border-color: #7952B3;
+           }
+           
+           .vuejs {
+               color: #41B883;
+           }
+           
+           .vuejs:hover {
+               background-color: #41B883;
+               border-color: #41B883;
+           }
+          </style>
+          
+               
+    </head>
+    <body>
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<div id="filters">
+  <a class="filter bootstrap" href="#"><i class="fab fa-bootstrap"></i> Bootstrap</a>  
+  <a class="filter css" href="#"><i class="fab fa-css3-alt"></i> Css</a>
+  <a class="filter drupal" href="#"><i class="fab fa-drupal"></i> Drupal</a>
+  <a class="filter html" href="#"><i class="fab fa-html5"></i></i> Html</a>
+  <a class="filter js" href="#"><i class="fab fa-js"></i> Js</a>
+  <a class="filter vuejs" href="#"><i class="fab fa-vuejs"></i> Vue.js</a>  
+</div>
+    </body>
+</html>
+

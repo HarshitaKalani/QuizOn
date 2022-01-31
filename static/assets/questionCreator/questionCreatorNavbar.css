@@ -1,0 +1,158 @@
+nav {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+      
+    }
+    
+    nav ul,nav li {
+    outline:0;
+    margin:0;
+    padding:0;
+    text-transform: uppercase;
+    }
+    
+    
+    
+    
+    /* Darker element side menu Start*/
+    
+    
+    .darkerli
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    }
+    
+    .darkerlishadow
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    -webkit-box-shadow: inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    -moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+    }
+    
+    
+    .darkerlishadowdown
+    {
+    background-color:#ededed;
+    text-transform:capitalize;  
+    -webkit-box-shadow: inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    -moz-box-shadow:    inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    box-shadow:         inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+    }
+    
+    /* Darker element side menu End*/
+    
+    
+    
+    
+    .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+    color:#fff;
+    background-color:#00bbbb;
+    text-shadow: 0px 0px 0px; 
+    }
+    .area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+    }
+    @font-face {
+      font-family: 'Titillium Web';
+      font-style: normal;
+      font-weight: 300;
+      src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+    }
+    .colorBackGround{
+      background-color: white;
+    }
+    
+    
+    header {
+        height: 70px;
+        padding: 0 25px;
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+        background-color: #ffffff;
+        /* left: 241px; */
+        top: 0;
+        box-shadow: 0 10px 20px -7px rgb(160 44 219 / 7%);
+    }
+    .daily-ui-logo {
+      margin-top: 15px;
+  }
+  .main-navigation {
+    float: right;
+    position: relative;
+    /* right: 270px; */
+  }
+  .first-nav {
+    float: left;
+    position: relative;
+  
+  }
+  .msg-nav {
+    float: center;
+    position: relative;
+    
+  
+  }
+  .nav-menu-item.active, .nav-menu-item:hover {
+    color: #242E4C;
+  }
+  a:link, a :visited, a :hover, a :active {
+    text-decoration: none;
+    outline: 0;
+  }
+  .nav-menu-item {
+    margin-left: 40px;
+    font-size: 14px;
+    color: #7D7A9E;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    line-height: 70px;
+  }
+  
+  element.style {
+  }
+  
+  .nav-menu-item.active, .nav-menu-item:hover {
+      color: #242E4C;
+  }
+  
+  a:link, a :visited, a :hover, a :active {
+      text-decoration: none;
+      outline: 0;
+  }
+  
+  .nav-menu-item {
+      margin-left: 40px;
+      font-size: 14px;
+      color: #7D7A9E;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+      line-height: 70px;
+  }
+  .msg-menu-item {
+    margin-left: 40px;
+    font-size: 16px;
+    color: #7D7A9E;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    line-height: 70px;
+  }
+  a {
+      background: transparent;
+      text-decoration: none;
+      color: inherit;
+      text-decoration: none;
+  }
+  *, *::after, *::before {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }

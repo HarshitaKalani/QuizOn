@@ -1,0 +1,41 @@
+<html>
+<head>
+    
+  <link rel="stylesheet" type="text/css" href="static\assets\spreadSheet\importSS.css">
+
+</head>
+<body>
+  {% if messages %}
+  {%for message in messages%}
+  <div class-"alert alert-{{message.tags}}" role="alert">
+    <p{% if message.tags%} class=""{% endif %}>{{message}}</p>
+  </div>
+  {%endfor%}
+  {%endif%}
+        <div class="box">
+        <h2> Upload SpreadSheet </h2>
+        <form method="post" enctype="multipart/form-data" action="/handleImportSpreadsheet" class="log-in">
+            {% csrf_token %}
+            
+            <div class="floating-label">
+                <input type="file" id="myfile" name="myfile">
+                <br>
+            </div>
+            <div class="floating-label">
+                
+                <button type="submit" class="btn center" href='/handleImportSpreadsheet'>Upload</button>
+                <br>
+              </div>
+           
+            
+            
+        </form>
+        <div class="floating-label">
+                
+            <a href="static\assets\spreadSheet\QuizizzSampleSpreadsheet.xlsx" download><button class="btnD center">Download Sample File</button></a
+            <br>
+          </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="static\assets\login\login.css" rel="stylesheet">
+        
+            </head>
+    <body>
+      
+        <div class="session">
+          <div class="left">
+                  
+          </div>
+          
+          <form method="post" action="/loginuser" class="log-in" autocomplete="off"> 
+            {% csrf_token %}
+
+            <h4>Welcome <span>Back</span></h4>
+            <p>Login and start a productive day!</p>
+            <div class="floating-label">
+              <input placeholder="Username/Email" type="text" name="username" id="username" autocomplete="off">
+              <label for="floatingInput">Username/Email:</label>
+            </div>
+            <div class="floating-label">
+              <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
+              <label for="password">Password:</label>
+            
+              
+            </div>
+            <button type="submit"  href="/loginuser">Log in</button>
+            <br>
+            <div>
+            <a class="signUpTxt"href="/signup"> Not having account? </a>
+            </div>
+
+          </form>
+        </div>
+      
+      </body>
+      </html>

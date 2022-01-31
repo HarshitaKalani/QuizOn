@@ -1,0 +1,35 @@
+<html>
+<head>
+    
+  <link rel="stylesheet" type="text/css" href="static/assets/createQuiz.css">
+
+</head>
+<body>
+  
+    <div class="box">
+      {% if messages %}
+    <ul class="messages">
+      {% for i in messages %}
+      <li>
+        <div class="alert alert-success">
+          {{i}}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+        <h2 class="center">{{createQuiz}}</h2>
+        <form method="post" action="/quizQuery" class="log-in">
+            {% csrf_token %}
+            <div class="floating-label">
+                <input class="text-center"placeholder="     {{NameOfTheQuiz}}" type="text" name="nameQuiz" id="nameQuiz" autocomplete="off">
+                <label for="floatingInput"></label>
+              </div>
+            <button class="btn center" type="submit"  href="/quizQuery">{{create}}</button>
+            
+        </form>
+        
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\questionBox.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\optionBox.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\timer.css" rel="stylesheet">
+
+        <style>
+            .limit{
+                width:200px;
+                word-wrap: break-word;
+                font-size : 1.3vw;
+                overflow-y: scroll;
+            }
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(5, 0fr);
+              }
+              .boxOption{
+                width:200px;height:200px;
+                box-shadow: 0 0 30px rgba(0,0,0,0.082);
+                border-radius:20px;
+                display: flex; justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-right:25px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="box">
+            <h2 class="center">
+              {{que.que}}
+            </h2>
+              <h2 class="center"></h2>
+              
+                <div class="floating-label">
+                    
+                </div>
+                  
+          </div>
+          <div class="boxQuestionTimer" style="position: absolute;left:10px;">
+            <h2 class="center">Timer</h2>
+              
+              
+            <div class="floating-label">
+                
+            </div>
+                  
+          </div>
+          <div class="boxQuestionTimer" style="position: absolute;right:10px;">
+            <h2 class="center">Timer</h2>
+              
+              
+            <div class="floating-label">
+                      
+            </div>
+                  
+          </div>
+          <div class="wrapper" style="color:black;position:absolute;top:250px;">
+            
+            {% for i in options %}
+            <a href="#" type=><div class="boxOption">
+                <div class="floating-label">  
+                  <p class="limit">{{i}}</p>
+                </div>
+            </div></a>
+            {% endfor %}
+          </div>
+          <div>
+            <form method="post" action="/handleNextQuestion" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+              <input type="hidden" id="questionIndex" name="questionIndex" value={{questionIndex}}>
+
+              <a href="/handleNextQuestion"><button class="btn" style="position:absolute;right:20px;bottom:20px;">Save&Next</button></a>
+            </form>
+          </div>
+    </body>
+</html>

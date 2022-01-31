@@ -1,1 +1,1 @@
-# QuizOn
+# QuizPlatform
