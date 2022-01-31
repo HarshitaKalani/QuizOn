@@ -49,12 +49,12 @@
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;right:10px;">
-            <h2 class="center" id="queT">{{timer}}</h2>
+            <h2 class="center" >{{timer}}</h2>
+            <input type="hidden" id="queT" name="queT" value={{timer}}>
               <script>
-                var x=document.getElementById('queT');
+                var x=parseInt(document.getElementById('queT').value);
                 var y=1000*x;
                 setInterval(function () {document.getElementById("savenext").click();}, y);
-
               </script>
               
             <div class="floating-label">
