@@ -151,7 +151,7 @@ def quizQuery(request):
                         if(i!=None):
                             optionHere.append(i)
                     print(len(optionHere))
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer})
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer })
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -252,10 +252,13 @@ def handleImportSpreadsheet(request):
         current_user=request.user
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
+        quizTime=0
+
         for i in range(len(imported_data['Question Text'])):
             if(imported_data['Question Text'][i] is not None):
                 options=[]
                 timer=imported_data['Time in seconds'][i]
+                quizTime+=timer
                 if(imported_data['Option 1'][i] is not None):
                     options.append(imported_data['Option 1'][i])
                 if(imported_data['Option 2'][i] is not None):
@@ -281,6 +284,7 @@ def handleImportSpreadsheet(request):
                 elif len(options)==4:
                     question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer)
                     question1.save()
+        quiz1.quizTimer=quizTime
         return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
 
         # file=pd.read_excel(my_uploaded_file)
