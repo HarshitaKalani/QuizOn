@@ -25,7 +25,11 @@
                 margin-right:25px;
             }
         </style>
-
+        <script>
+          var a=parseInt(document.getElementById('quizT').value);
+          var b=1000*a;
+          setInterval(function () {document.getElementById("endQuiz").click();}, b);
+        </script>
     </head>
     <body>
         <div class="box">
@@ -42,24 +46,32 @@
           <div class="boxQuestionTimer" style="position: absolute;left:10px;">
             <h2 class="center">{{quizTime}}</h2>
             <input type="hidden" id="quizT" name="quizT" value={{quizTime}}>
-            <script>
-              var a=parseInt(document.getElementById('quizT').value);
-              var b=1000*a;
-              setInterval(function () {document.getElementById("endQuiz").click();}, b);
-            </script>
+            
             <div class="floating-label">
                 
             </div>
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;right:10px;">
-            <h2 class="center" >{{timer}}</h2>
+            <h2 class="center" id="h2queT" name="h2queT">{{timer}}</h2>
             <input type="hidden" id="queT" name="queT" value={{timer}}>
-              <script>
+              {% comment %} <script>
                 var x=parseInt(document.getElementById('queT').value);
                 var y=1000*x;
                 setInterval(function () {document.getElementById("savenext").click();}, y);
-              </script>
+              </script> {% endcomment %}
+              <script type="text/javascript">
+                // Set the date we're counting down to
+                var x =parseInt(document.getElementById("queT").value);
+               setInterval(function(){
+               		x=x-1;
+                  
+                  document.getElementById("h2queT").innerHTML=x;
+                  if(x<0){
+                    document.getElementById("savenext").click();
+                  }
+                },1000);
+                </script>
               
             <div class="floating-label">
                       
