@@ -365,3 +365,23 @@ def handleNextQuestion(request):
             return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":quiz2.quizTimer})
         else:
             return render(request,"index.html")
+
+def handleDeleteQuiz(request):
+    if request.method=="POST":
+        codeHere=request.POST.get('quizDel')
+        first1=AllQuizes.objects.filter(tutorName=request.user)
+        for i in first1.iterator():
+            allQuizes1=QuizFinal.objects.filter(tutor=i)
+            for j in allQuizes1:
+               if(str(j.code)==codeHere):
+                   i.delete()
+
+        # quiz.delete()
+        user=request.user
+        first=AllQuizes.objects.filter(tutorName=user)
+        quizes=[]
+        for i in first.iterator():
+            quiz1=QuizFinal.objects.filter(tutor=i)
+            quizes.append(quiz1)
+        quizes.reverse()
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})

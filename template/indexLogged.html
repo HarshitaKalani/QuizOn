@@ -11,9 +11,14 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="static\assets\login\boxHere.css" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
+    .butt{
+      margin:0px;
+    }
     .wrapper {
       display: grid;
       grid-template-columns: repeat(4, 0fr);
@@ -311,6 +316,39 @@
     -moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
     box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
     }
+    .btnHere {
+      -webkit-appearance: none;
+      width: auto;
+      min-width: 100px;
+      border-radius: 24px;
+      text-align: center;
+      padding: 0px 23px;
+      /* margin-top: 5px; */
+       background-color: #ffffff; 
+       color: black; 
+      /* font-size: 14px; */
+      /* margin-left: auto; */
+      font-weight: 500;
+      box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 0%);
+      /* border: none; */
+      transition: all 0.3s ease;
+      outline: 0;
+  }
+    {% comment %} .btnHere{
+      background: #FFFFFF;
+      padding: 2px 20px;
+      color:black;
+      border-radius: 0px;
+      margin:0px;
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    }
+    .btnHere:hover {
+      transform: translateY(0px);
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 00, 0);
+    }
+    .btnHere:hover:active {
+      transform: scale(0);
+    }  {% endcomment %}
     button {
       -webkit-appearance: none;
       width: auto;
@@ -652,6 +690,11 @@ element.style {
         
           <div class="box">
             {% for j in i %}
+            <form method="post" action="/handleDeleteQuiz" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizDel" name="quizDel" value={{j.code}}>
+              <a href="/handleDeleteQuiz" ><button type="submit" class="btnHere"><i class="fa fa-trash"></i></button></a>
+            </form>
             <p style="font-size:15px;text-align:left;">Name: {{j.nameOfQuiz}}</p>
             <p style="font-size:15px;text-align:left;">isActive: {{j.bool}}</p>
            
@@ -672,8 +715,9 @@ element.style {
             {% if j.bool %}
           
             <p style="font-size:15px;text-align:left;">Code: {{j.code}}</p>
-
+            
             {% endif %}
+            
             {% endfor %}  
           </div>
         
