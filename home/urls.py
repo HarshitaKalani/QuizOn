@@ -28,6 +28,8 @@ urlpatterns = [
     path("handleQuizStarted" ,views.handleQuizStarted, name='handleQuizStarted'),
     path("handleNextQuestion" ,views.handleNextQuestion, name='handleNextQuestion'),
     path("handleDeleteQuiz" ,views.handleDeleteQuiz, name='handleDeleteQuiz'),
+    path("handleAnswerResponse" ,views.handleAnswerResponse, name='handleAnswerResponse'),
+
 
 
 

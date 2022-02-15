@@ -88,11 +88,20 @@
           <div class="wrapper" style="color:black;position:absolute;top:250px;">
             
             {% for i in options %}
-            <a href="#" type=><div class="boxOption">
+            <form method="post" action="/handleAnswerResponse" class="log-in">
+              {% csrf_token %}
+            <a href="/handleAnswerResponse"><button type="submit"><div class="boxOption">
                 <div class="floating-label">  
                   <p class="limit">{{i}}</p>
+                  <input type="hidden" id="ans" name="ans" value="{{i}}">
+                  <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                  <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                  <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                  
                 </div>
-            </div></a>
+            </div></button></a>
+          </form>
             {% endfor %}
           </div>
           <div>

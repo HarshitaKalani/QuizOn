@@ -151,7 +151,7 @@ def quizQuery(request):
                         if(i!=None):
                             optionHere.append(i)
                     print(len(optionHere))
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer })
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz})
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -316,7 +316,7 @@ def handleStartQuiz(request):
             quiz2=QuizFinal.objects.filter(tutor=i)
             quizes.append(quiz2)
         quizes.reverse()
-        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),})
 
 def handleEndQuiz(request):
     if request.method=="POST":
@@ -365,7 +365,7 @@ def handleNextQuestion(request):
             # print(curr_time)
             # print(type(curr_time))
             # totalTime=quiz2.quizTimer
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime})
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code})
         else:
             return render(request,"index.html")
 
@@ -388,3 +388,40 @@ def handleDeleteQuiz(request):
             quizes.append(quiz1)
         quizes.reverse()
         return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+
+def handleAnswerResponse(request):
+    if request.method=="POST":
+        code=request.POST.get('ansQuizCode')
+        que=request.POST.get('ansQuestion')
+        option=request.POST.get('ans')
+        quiz=QuizFinal.objects.filter(code=code)
+        quiz1=quiz[0]
+        question=QuestionFinal.objects.filter(tutor=quiz1, que=que)[0]
+        print(question)
+        user=request.user
+        studentHere=StudentFinal.objects.filter(quiz=quiz1,nameOfStudent=user.username)[0]
+        ans1=AnswerFinal.objects.create(quiz=quiz1,question=question,student=studentHere,answer=option)
+        ans1.save()
+        index=int(request.POST.get('questionIndex'))+1
+        quiz2=QuizFinal.objects.filter(code=code)[0]
+        questions=list(QuestionFinal.objects.filter(tutor=quiz2))
+        # stud=StudentFinal.objects.filter(quiz=quiz2)
+        if(quiz2.bool==True and index<len(questions)):
+            optionHere=[]
+            op1=questions[index].op1
+            op2=questions[index].op2
+            op3=questions[index].op3
+            op4=questions[index].op4
+            options=[op1,op2,op3,op4]
+            for i in options:
+                if(i!=" " and len(i)!=0):
+                    optionHere.append(i)
+            # print(len(optionHere))
+            # print(questions[index].questionTimer)
+            totalTime=quiz2.quizTimer-questions[index-1].questionTimer
+            # print(curr_time)
+            # print(type(curr_time))
+            # totalTime=quiz2.quizTimer
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code})
+        else:
+            return render(request,"index.html")
