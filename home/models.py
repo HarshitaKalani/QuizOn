@@ -129,12 +129,16 @@ class QuestionFinal(models.Model):
 class StudentFinal(models.Model):
     quiz=models.ForeignKey(QuizFinal,on_delete=models.CASCADE)
     nameOfStudent=models.CharField(max_length=100,default=" ")
-
     def __str__(self):
         return '%s' %(self.nameOfStudent)
 
-
-
+class AnswerFinal(models.Model):
+    quiz=models.ForeignKey(QuizFinal,on_delete=models.CASCADE)
+    question=models.ForeignKey(QuestionFinal,on_delete=models.CASCADE)
+    student=models.ForeignKey(StudentFinal,on_delete=models.CASCADE)
+    answer=models.CharField(max_length=100,default=" ")
+    def __str__(self):
+        return '%s' %(self.student)
         
 class QuestionFinalSerializer(serializers.ModelSerializer):
     class Meta:

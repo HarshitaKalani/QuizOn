@@ -25,14 +25,14 @@
                 margin-right:25px;
             }
         </style>
-        <script>
+        {% comment %} <script>
           var a=parseInt(document.getElementById('quizT').value);
           var b=1000*a;
           setInterval(function () {document.getElementById("endQuiz").click();}, b);
-        </script>
+        </script> {% endcomment %}
     </head>
     <body>
-        <div class="box">
+        <div class="box " style="margin-left: 28px;">
             <h2 class="center">
               {{que.que}}
             </h2>
@@ -44,17 +44,21 @@
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;left:10px;">
-            <h2 class="center">{{quizTime}}</h2>
+            <h4 class="center" >Total Time Left</h4>
+            <h3 class="center" id="h2quizT" name="h2quizT">{{quizTime}}</h3>
             <input type="hidden" id="quizT" name="quizT" value={{quizTime}}>
-            
             <div class="floating-label">
                 
             </div>
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;right:10px;">
-            <h2 class="center" id="h2queT" name="h2queT">{{timer}}</h2>
+            <h3 class="center">Time Left</h3>
+            <form method="post" action="/handleNextQuestion" class="log-in">
+              {% csrf_token %}
+            <h3 class="center" id="h2queT" name="h2queT">{{timer}}</h3>
             <input type="hidden" id="queT" name="queT" value={{timer}}>
+            </form>
               {% comment %} <script>
                 var x=parseInt(document.getElementById('queT').value);
                 var y=1000*x;
@@ -62,12 +66,15 @@
               </script> {% endcomment %}
               <script type="text/javascript">
                 // Set the date we're counting down to
-                var x =parseInt(document.getElementById("queT").value);
+                var x = parseInt(document.getElementById("queT").value);
+                var y = parseInt(document.getElementById("quizT").value);
                setInterval(function(){
-               		x=x-1;
+                  x=x-1;
+                  y=y-1;
                   
                   document.getElementById("h2queT").innerHTML=x;
-                  if(x<0){
+                  document.getElementById("h2quizT").innerHTML=y;
+                  if(x<0 ){
                     document.getElementById("savenext").click();
                   }
                 },1000);

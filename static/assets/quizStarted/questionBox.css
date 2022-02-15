@@ -14,9 +14,12 @@
             width:75%;height:40%;
             box-shadow: 0 0 30px rgba(0,0,0,0.082);
             border-radius:20px;
-            display: flex; justify-content: center;
+            display: flex; 
+            margin-left:28px; justify-content: center;
             align-items: center;
             flex-direction: column;
+            
+
         }
         .box p{
             margin: 5px 20px; text-align: center;

@@ -344,6 +344,7 @@ def handleQuizStarted(request):
 def handleNextQuestion(request):
     if request.method=="POST":
         code=request.POST.get('quizCheck')
+        curr_time=(request.POST.get('h2queT'))
         index=int(request.POST.get('questionIndex'))+1
         quiz2=QuizFinal.objects.filter(code=code)[0]
         questions=list(QuestionFinal.objects.filter(tutor=quiz2))
@@ -356,13 +357,15 @@ def handleNextQuestion(request):
             op4=questions[index].op4
             options=[op1,op2,op3,op4]
             for i in options:
-                print(i)
-                print(len(i))
                 if(i!=" " and len(i)!=0):
                     optionHere.append(i)
             # print(len(optionHere))
             # print(questions[index].questionTimer)
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":quiz2.quizTimer})
+            totalTime=quiz2.quizTimer-questions[index-1].questionTimer
+            # print(curr_time)
+            # print(type(curr_time))
+            # totalTime=quiz2.quizTimer
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime})
         else:
             return render(request,"index.html")
 
