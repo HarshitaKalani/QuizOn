@@ -151,7 +151,10 @@ def quizQuery(request):
                         if(i!=None):
                             optionHere.append(i)
                     print(len(optionHere))
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz})
+                    opLengthBool=True
+                    if (len(optionHere)!=0):
+                        opLengthBool=False
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz,"opLengthBool":opLengthBool})
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -365,7 +368,10 @@ def handleNextQuestion(request):
             # print(curr_time)
             # print(type(curr_time))
             # totalTime=quiz2.quizTimer
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code})
+            opLengthBool=True
+            if (len(optionHere)!=0):
+                opLengthBool=False
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
         else:
             return render(request,"index.html")
 
@@ -422,6 +428,9 @@ def handleAnswerResponse(request):
             # print(curr_time)
             # print(type(curr_time))
             # totalTime=quiz2.quizTimer
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code})
+            opLengthBool=True
+            if (len(optionHere)!=0):
+                opLengthBool=False
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
         else:
             return render(request,"index.html")
