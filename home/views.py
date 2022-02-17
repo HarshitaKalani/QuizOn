@@ -180,10 +180,10 @@ def handleMultipleChoice(request):
         op4Here=request.POST.get('op4Here')
         marks=request.POST.get('marks')
         timer=request.POST.get('timer')
-        op1Select=request.POST.get('op1Select')
-        op2Select=request.POST.get('op2Select')
-        op3Select=request.POST.get('op3Select')
-        op4Select=request.POST.get('op4Select')
+        op1Select=request.POST.get('op1select')
+        op2Select=request.POST.get('op2select')
+        op3Select=request.POST.get('op3select')
+        op4Select=request.POST.get('op4select')
 
         lst=[op1Select,op2Select,op3Select,op4Select]
         opLst=[op1Here,op2Here,op3Here,op4Here]
