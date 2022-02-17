@@ -70,7 +70,7 @@
             margin-top: 5px; border-radius: 20px;
             position: absolute; cursor: pointer;
             margin-left: 120px;
-            right: 2%;
+            right: 5%;
             
 
         }
@@ -95,14 +95,14 @@
 
 }
 .btnD{
-            background: #59f87c;
+            background: #FF416C;
             box-shadow: 0 0 30px rgba(0,0,0,0.253);
-            background: linear-gradient(to right, #52f15a,#68f57f);
+            background: linear-gradient(to right, #FF416C,#FF416C);
             border: none; color: white;
             padding: 4px 20px;
             margin-top: 5px; border-radius: 20px;
             position: absolute; cursor: pointer;
-            margin-left: 120px;
+            margin-left: 5px;
             
             
 
@@ -113,12 +113,59 @@
             z-index: -1; border-radius: 20px;
             filter: blur(0px);
             top:0; left:0;
-            background: linear-gradient(to right, #73f179,#77e069);
+            background: linear-gradient(to right, #FF416C,#FF416C);
             transition: filter .4s;
         }
         .btnD:hover::before{
             filter:blur(10px);
         }
+        .inputMarks {
+        font-size: 14px;
+        padding: 20px 0px;
+        height: 56px;
+        border: none;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        width: 140px;
+        box-sizing: border-box;
+        transition: all 0.3s linear;
+        color: #000;
+        font-weight: 400;
+        -webkit-appearance: none;
+        position: absolute;
+        top: 0%;
+        right : 1%;
+      }
+      .inputMarks:focus {
+        border-bottom: solid 1px #b69de6;
+        outline: 0;
+        box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+      }
+
+      .inputTimer {
+        font-size: 14px;
+        padding: 20px 0px;
+        height: 56px;
+        border: none;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        width: 140px;
+        box-sizing: border-box;
+        transition: all 0.3s linear;
+        color: #000;
+        font-weight: 400;
+        -webkit-appearance: none;
+        position: absolute;
+        top: 22%;
+        right : 1%;
+      }
+      .inputTimer:focus {
+        border-bottom: solid 1px #b69de6;
+        outline: 0;
+        box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+      }
+      
+        
   </style>
   <script>
     EqEditor.embed('editor', '', ['sym', 'bin', 'sub', 'ace', 'arr', 'gel', 'geu', 'rel', 'mat', 'format', 'fn', 'col', 'font', 'size', 'dpi', 'bg', 'ope']);
@@ -153,8 +200,14 @@
         <!-- <a href="/handleMultipleChoice"><button type="submit" class="btn">Save</button></a> -->
      
     </p>
-    
+    <input placeholder="Marks:" type="text" name="marks" class="inputMarks"id="marks" autocomplete="off">
+    <!-- <label for="floatingInput">Marks:</label> -->
+    <div class="floating-label">
+    <input placeholder="Timer: in Seconds" type="text" name="timer" class="inputTimer" id="timer" autocomplete="off">
+  </div>
+  <div class="floating-label">
     <a href="/handleMultipleChoice"><button type="submit" class="btn">Save</button></a>
+  </div>
     <button type="hidden" class="btnD" onclick="disp();return false;">Display Ques</button>
   </div>
   

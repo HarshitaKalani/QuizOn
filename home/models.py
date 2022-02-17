@@ -118,6 +118,7 @@ class QuestionFinal(models.Model):
     # que=models.CharField(max_length=100)
     # que=models.CharField(max_length=100)
     questionTimer=models.IntegerField(default=10)
+    marks=models.IntegerField(default=10)
     que=RichTextField(default=" ")
     number = models.IntegerField()
     op1=RichTextField(default=" ")
