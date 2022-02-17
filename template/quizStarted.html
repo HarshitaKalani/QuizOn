@@ -24,6 +24,15 @@
                 flex-direction: column;
                 margin-right:25px;
             }
+            .boxOption2{
+              width:700px;height:250px;
+              box-shadow: 0 0 30px rgba(0,0,0,0.082);
+              border-radius:20px;
+              display: flex; justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              margin-right:25px;
+          }
         </style>
         {% comment %} <script>
           var a=parseInt(document.getElementById('quizT').value);
@@ -86,14 +95,41 @@
                   
           </div>
           <div class="wrapper" style="color:black;position:absolute;top:250px;">
+            {% if opLengthBool %}
+            <form method="post" action="/handleAnswerResponse" class="log-in">
+              {% csrf_token %}
+            <div class="boxOption2">
+                
+                  <input type="hidden" id="ans" name="ans" value="{{i}}">
+                  <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                  <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                  <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                <input><textarea rows="8" cols="100" id="ans"name="ans" placeholder="Enter Answer Here"></textarea></input>
+                  
+                  <a href="/handleAnswerResponse"><button type="submit" class="btn center" style="position:relative;left:75%;">Next Question</button>
+            </div>
             
+          </form>
+            {% else %}
             {% for i in options %}
-            <a href="#" type=><div class="boxOption">
+            <form method="post" action="/handleAnswerResponse" class="log-in">
+              {% csrf_token %}
+            <a href="/handleAnswerResponse"><button type="submit"><div class="boxOption">
                 <div class="floating-label">  
                   <p class="limit">{{i}}</p>
+                  <input type="hidden" id="ans" name="ans" value="{{i}}">
+                  <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                  <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                  <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                  
                 </div>
-            </div></a>
+            </div></button></a>
+            
+          </form>
             {% endfor %}
+            {% endif %}
           </div>
           <div>
             <form method="post" action="/handleNextQuestion" class="log-in">

@@ -15,7 +15,7 @@ admin.site.register(UserContainer)
 admin.site.register(Student)
 admin.site.register(QuestionFinal)
 admin.site.register(StudentFinal)
-
+admin.site.register(AnswerFinal)
 class QuestionFinalAdmin(ImportExportModelAdmin):
     list_display= ('tutor', 'que', 'number', 'op1', 'op2', 'op3','op4','ans')
 
