@@ -1,108 +1,333 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="static\assets\temp\tempbox.css" >
-        {% comment %} <link rel="stylesheet" type="text/css" href="static\assets\temp\equation.css"> {% endcomment %}
 
-        <link rel="stylesheet" href="https://latex.codecogs.com/css/equation-embed.css"/>
-<script src="https://latex.codecogs.com/js/eq_config.js"></script>
-<script src="https://latex.codecogs.com/js/eq_editor-lite-19.js"></script>
+<head>
+  <!-- <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\questionBox.css" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\optionBox.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\timer.css" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="static\assets\temp\tempbox.css">
+  <link rel="stylesheet" href="https://latex.codecogs.com/css/equation-embed.css" />
+  <script src="https://latex.codecogs.com/js/eq_config.js"></script>
+  <script src="https://latex.codecogs.com/js/eq_editor-lite-19.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .limit {
+      width: 200px;
+      word-wrap: break-word;
+      font-size: 1.3vw;
+      overflow-y: scroll;
+    }
 
-    </head>
-    <body>
-     <header style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);">
-          {% comment %} <nav class="main-navigation">
-              <a href="/">
-                  <img src="static/iitj logo.jpg" width="100" height="50" alt="QuizPlatform">
-                 
-              </a> {% endcomment %}
-             
-              <div id="editor"></div>
-          {% comment %} </nav> {% endcomment %}
-            {% comment %} <nav class="main-navigation">
-               
-          </nav> {% endcomment %}
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(5, 0fr);
+    }
+
+
+
+    .box {
+      width: 75%;
+      height: 40%;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.082);
+      border-radius: 20px;
+      position: absolute;
+      justify-content: center;
+      margin-top: 20px;
+      align-items: center;
+      flex-direction: column;
+      left: 12%;
+
+
+    }
+
+
+    .boxOption {
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.082);
+      border-radius: 20px;
+      display: inline-block;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      top: 20%;
+      left: 70%;
+      margin-right: 1%;
+    }
+
+    .boxOption p {
+      margin: 5px 20px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .btn{
+            background: #FF416C;
+            box-shadow: 0 0 30px rgba(0,0,0,0.253);
+            background: linear-gradient(to right, #FF3B2B,#FF416C);
+            border: none; color: white;
+            padding: 4px 20px;
+            margin-top: 5px; border-radius: 20px;
+            position: absolute; cursor: pointer;
+            margin-left: 120px;
+            right: 2%;
             
-          
-              <div id="main-nav-open-menu-btn" class="mobile-menu-icon"></div>
-          </header>
-     <section>  
-          <div class="colour"></div>  
-          <div class="colour"></div>  
-          <div class="colour"></div>  
-          <div class="box">  
-               <div class="square" style="--i:0;"></div>  
-               <div class="square" style="--i:1;"></div>  
-               <div class="square" style="--i:2;"></div>  
-               <div class="square" style="--i:3;"></div>  
-               <div class="square" style="--i:4;"></div> 
-              
-               <div class="container">  
-                    
-                     
-                    <div class="form">  
-                    <img id="equation"/>
 
-                         <form method="post" action="/handleMultipleChoice" class="log-in" autocomplete="off"> 
-                              {% csrf_token %}
-                         
-                         <textarea name="questionHere" id="questionHere" class="mt-4 mb-1 pb-0" rows="8" cols="60" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Question Here"></textarea> 
+        }
+        .btn::before{
+            content:' '; position: absolute;
+            width: 100%; height:100%;
+            z-index: -1; border-radius: 20px;
+            filter: blur(0px);
+            top:0; left:0;
+            background: linear-gradient(to right, #FF3B2B,#FF416C);
+            transition: filter .4s;
+        }
+        .btn:hover::before{
+            filter:blur(10px);
+        }
 
-                            
+        @media(min-width: 768px) {
+  .row.flex {
+    display: flex;
+    align-items: flex-end;
+  }
 
-                         <script>
-                         EqEditor.embed('editor','',['sym','bin','sub','ace','arr','gel','geu','rel','mat','format','fn','col','font','size','dpi','bg' ,'ope']);
-                     
-                         EqEditor.add(new EqTextArea('equation', 'questionHere'),false);
-                         EqEditor.add(new EqTextArea('equation', 'ansHere'),false);
-                         textarea.addOutput(new EqEditor.Output('testbox','html'));
-                         </script>
-                                   <input type="checkbox" name="op1Select" id="op1Select" style="position:absolute;left:167px;top:187px;">
-                                   <input type="checkbox" name="op2Select" id="op2Select" style="position:absolute;left:317px;top:187px;">
-                                   <input type="checkbox" name="op3Select" id="op3Select" style="position:absolute;left:467px;top:187px;">
-                                   <input type="checkbox" name="op4Select" id="op4Select" style="position:absolute;left:617px;top:187px;">
-                              
-                              <div class="input__box">
-                                        <!-- <span style="position:absolute;left:10px;top:50px;">
-                                             <input type="radio" label="select">
-                                        </span> -->
-                                       
-                                   <textarea  name="op1Here" id="op1Here" class="mt-3 mb-1 pb-0 pr-3" rows="8" cols="19" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Option 1 Here"></textarea>
+}
+.btnD{
+            background: #59f87c;
+            box-shadow: 0 0 30px rgba(0,0,0,0.253);
+            background: linear-gradient(to right, #52f15a,#68f57f);
+            border: none; color: white;
+            padding: 4px 20px;
+            margin-top: 5px; border-radius: 20px;
+            position: absolute; cursor: pointer;
+            margin-left: 120px;
+            
+            
 
-                              <textarea name="op2Here" id="op2Here" class="mt-3 mb-1 pb-0 pr-3" rows="8" cols="19" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Option 2 Here"></textarea>
+        }
+        .btnD::before{
+            content:' '; position: absolute;
+            width: 100%; height:100%;
+            z-index: -1; border-radius: 20px;
+            filter: blur(0px);
+            top:0; left:0;
+            background: linear-gradient(to right, #73f179,#77e069);
+            transition: filter .4s;
+        }
+        .btnD:hover::before{
+            filter:blur(10px);
+        }
+  </style>
+  <script>
+    EqEditor.embed('editor', '', ['sym', 'bin', 'sub', 'ace', 'arr', 'gel', 'geu', 'rel', 'mat', 'format', 'fn', 'col', 'font', 'size', 'dpi', 'bg', 'ope']);
 
-                              <textarea name="op3Here" id="op3Here" class="mt-3 mb-1 pb-0 pr-3 " rows="8" cols="19" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Option 3 Here"></textarea>
+    EqEditor.add(new EqTextArea('equation', 'questionHere'), false);
+    EqEditor.add(new EqTextArea('equation', 'ansHere'), false);
+    textarea.addOutput(new EqEditor.Output('testbox', 'html'));
+  </script>
 
-                              <textarea name="op4Here" id="op4Here" class="mt-3 mb-1 pb-0" rows="8" cols="19" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Option 4 here"></textarea> 
-                                        
-                                         <div id="welcomeDiv"  style="display:none;" class="answer_list" >
-                                   <input type="checkbox" name="op5Select" id="op5Select" style="position:absolute;right:165px;top:315px;">
-                                   <textarea name="op5Here" id="op5Here" class="mt-3 mb-1 pb-0" rows="8" cols="19" style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" placeholder="Type Option 5 here"></textarea> 
-                              </div>
-                              <input type="button" value="Add an option" onclick="showDiv()" />
-                              <script>
-                                   function showDiv() {
-                                        document.getElementById('welcomeDiv').style.display = "block";
-                                     }
-                                   </script>
-                              </div> 
-                              <script>
-                                   EqEditor.embed('editor','',['sym','bin','sub','ace','arr','gel','geu','rel','mat','ope','|','format','fn','col','font','size','dpi','bg',]);
-                               
-                                   EqEditor.add(new EqTextArea('equation', 'questionHere'),false);
-                                   EqEditor.add(new EqTextArea('equation', 'ansHere'),false);
+</head>
 
-                                   textarea.addOutput(new EqEditor.Output('testbox','html'));
-                                   </script> 
-                              
-                              <div class="input__box">  
-                                   <input href="/handleMultipleChoice" type="submit" value="Save">  
-                              </div>  
+<body>
+  <!-- <header style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0);"> -->
+
+  <div>
+    <nav>
+      <div id="editor"></div>
+      <div id="main-nav-open-menu-btn" class="mobile-menu-icon"></div>
+    </nav>
+  </div>
+ <div class="form">  
+  <img id="equation" style="display: none"/>
+  <form method="post" action="/handleMultipleChoice" class="log-in" autocomplete="off"> 
+    {% csrf_token %}
+  <div class="box center ">
+    
+    <p>
+        
+      <textarea name="questionHere" id="questionHere" class="mt-4 mb-1 pb-0" rows="8" cols="100"
+        style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+        placeholder="Type Question Here"></textarea>
+        <!-- <a href="/handleMultipleChoice"><button type="submit" class="btn">Save</button></a> -->
+     
+    </p>
+    
+    <a href="/handleMultipleChoice"><button type="submit" class="btn">Save</button></a>
+    <button type="hidden" class="btnD" onclick="disp();return false;">Display Ques</button>
+  </div>
+  
+  <script>
+    EqEditor.embed('editor','',['sym','bin','sub','ace','arr','gel','geu','rel','mat','format','fn','col','font','size','dpi','bg' ,'ope']);
+
+    EqEditor.add(new EqTextArea('equation', 'questionHere'),false);
+    EqEditor.add(new EqTextArea('equation', 'ansHere'),false);
+    textarea.addOutput(new EqEditor.Output('testbox','html'));
+    </script>
+  <div class="wrapper" style="color:black;position:absolute;top:50%;">
+
+
+    <div id="welcomeDiv1" style="display:block;" class="answer_list">
+      <input type="checkbox" name="op1Select" id="op1Select" style="position:absolute;right:165px;top:315px;">
+
+      <div class="boxOption">
+        <!-- <button type="hidden" style=" position: absolute;
+        right: 3%;
+        top: 0%;" onclick="delDiv()">
+          <i class="fa fa-trash" style=" font-size:24px; position: absolute;
+          right: 3%;
+          top: 0%;"></i>
+        </button> -->
+        <div class="floating-label">
+          <p class="limit"> <textarea name="op1Here" id="op1Here" class="mt-3 mb-1 pb-0 pr-3" rows="10" cols="19"
+              style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+              placeholder="Type Option 1 Here"></textarea></p>
+        </div>
+      </div>
+     
+
+    </div>
+
+
+    <div id="welcomeDiv2" style="display:block;" class="answer_list">
+      <input type="checkbox" name="op2Select" id="op2Select" style="position:absolute;right:165px;top:315px;">
+
+      <div class="boxOption">
+        <!-- <button type="hidden" style=" position: absolute;
+        right: 3%;
+        top: 0%;" onclick="delDiv()">
+          <i class="fa fa-trash" style=" font-size:24px; position: absolute;
+          right: 3%;
+          top: 0%;"></i>
+        </button> -->
+        <div class="floating-label">
+          <p class="limit"> <textarea name="op2Here" id="op2Here" class="mt-3 mb-1 pb-0 pr-3" rows="10" cols="19"
+              style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+              placeholder="Type Option 2 Here"></textarea></p>
+        </div>
+      </div>
+      
+
+    </div>
+
+
+
+    <div id="welcomeDiv3" style="display:block;" class="answer_list">
+      <input type="checkbox" name="op3Select" id="op3Select" style="position:absolute;right:165px;top:315px;">
+
+      <div class="boxOption">
+        <button type="hidden" style=" position: absolute;
+        right: 3%;
+        top: 0%;" onclick="delDiv(); return false;">
+          <i class="fa fa-trash" style=" font-size:24px; position: absolute;
+          right: 3%;
+          top: 0%;"></i>
+        </button>
+        <div class="floating-label">
+          <p class="limit"> <textarea name="op3Here" id="op3Here" class="mt-3 mb-1 pb-0 pr-3" rows="10" cols="19"
+              style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+              placeholder="Type Option 3 Here"></textarea></p>
+        </div>
+      </div>
+      
+
+    </div>
+
+
+    <div id="welcomeDiv4" style="display:block;" class="answer_list">
+      <input type="checkbox" name="op4Select" id="op4Select" style="position:absolute;right:165px;top:315px;">
+
+      <div class="boxOption">
+        <button type="hidden" style=" position: absolute;
+        right: 3%;
+        top: 0%;" onclick="delDiv(); return false;">
+          <i class="fa fa-trash" style=" font-size:24px; position: absolute;
+          right: 3%;
+          top: 0%;"></i>
+        </button>
+       
+        <div class="floating-label">
+          <p class="limit"> <textarea name="op4Here" id="op4Here" class="mt-3 mb-1 pb-0 pr-3" rows="10" cols="19"
+              style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+              placeholder="Type Option 4 Here"></textarea></p>
+        </div>
+      </div>
+  
+
+    </div>
+
+
+    <div id="welcomeDiv5" style="display:none;" class="answer_list">
+      <input type="checkbox" name="op5Select" id="op5Select" style="position:absolute;right:165px;top:315px;">
+
+      <div class="boxOption">
+        <button type="hidden" style=" position: absolute;
+        right: 3%;
+        top: 0%;" onclick="delDiv(); return false;">
+          <i class="fa fa-trash" style=" font-size:24px; position: absolute;
+          right: 3%;
+          top: 0%;"></i>
+        </button>
+        <div class="floating-label">
+          <p class="limit"> <textarea name="op5Here" id="op5Here" class="mt-3 mb-1 pb-0 pr-3" rows="10" cols="19"
+              style="background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)"
+              placeholder="Type Option 5 Here"></textarea></p>
+        </div>
+      </div>
+      
+
+    </div>
+    <button type="hidden" style="position: absolute;
+    right: -50%;
+    top: 55%;" onclick="addDiv(); return false;">
+      <i class="fa fa-plus-circle" style="font-size:24px"></i>
+    </button>
+
+    <script>
+         
+
+      function addDiv() {
+        var x = document.querySelectorAll(".answer_list");
+        for (var i = 0; i < x.length; i++) {
+
+          if (x[i].style.display == "none") {
+            if (i <5) {
+              x[i].style.display = "block";
+              break;
+            }
+          }
+
+        }
+      }
+
+      function delDiv() {
+        var y = document.querySelectorAll(".answer_list");
+        for (var i = 0; i < y.length; i++) {
+
+          if (y[i].style.display == "none") {
+            if (i - 1 >= 2) {
+              y[i - 1].style.display = "none";
+              break;
+            }
+          }
+          else if(i==4){
+            y[i].style.display="none";
+          }
+
+        }
+      }
+      function disp(){
+          var z=document.getElementById('equation');
+          z.style.display="block";
+      }
+
+    </script>
+  </div>
+
+</form>
+ </div>
  
-                         </form>  
-                    </div>  
-               </div>  
-          </div>  
-     </section>  
-    </body>
-</html>
+</body>
 
+</html>
