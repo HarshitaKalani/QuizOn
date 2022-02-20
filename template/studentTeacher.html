@@ -1,566 +1,626 @@
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <style>
-             #bg{
-            background-image: url('static/bg1.jpg');
-            background-size: 1400px 700px;
-            background-repeat: no-repeat;
-            background-position: top;
-            background-attachment: fixed;}
-        body {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: lato;
-          }
-          
-          .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-            background: url("https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?ixlib=rb-0.3.5&s=4222852e25e0f57d9485f7889957e99a&auto=format&fit=crop&w=2000&q=80");
-            background-size: cover;
-            background: #ccc;
-            background-position: 0 50%;
-            background: #DEB493;
-          }
-          .background:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, 0);
-          }
-          
-          .outer-div,
-          .inner-div {
-            height: 450px;
-            max-width: 300px;
-            margin: 0 auto;
-            position: relative;
-          }
-          
-          .outer-div {
-            perspective: 900px;
-            perspective-origin: 50% calc(50% - 18em);
-          }
-          
-          .inner-div {
-            margin: 0 auto;
-            border-radius: 5px;
-            font-weight: 400;
-            color: #071011;
-            font-size: 1rem;
-            text-align: center;
-            transition: all 0.6s cubic-bezier(0.8, -0.4, 0.2, 1.7);
-            transform-style: preserve-3d;
-          }
-          .inner-div:hover .social-icon {
-            opacity: 1;
-            top: 0;
-          }
-          
-          .outer-div:hover .inner-div {
-            transform: rotateY(180deg);
-          }
-          
-          .front,
-          .back {
-            position: relative;
-            top: 0;
-            left: 0;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-          }
-          
-          .front {
-            cursor: pointer;
-            height: 100%;
-            background: #fff;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-            border-radius: 5px;
-            box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-          }
-          
-          .front__bkg-photo {
-            position: relative;
-            height: 150px;
-            width: 300px;
-            background: url("https://images.unsplash.com/photo-1511207538754-e8555f2bc187?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=88672068827eaeeab540f584b883cc66&auto=format&fit=crop&w=1164&q=80") no-repeat;
-            background-size: cover;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-            overflow: hidden;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-          }
-          .front__bkg-photo:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-          }
-          
-          .front__face-photo {
-            position: relative;
-            top: -60px;
-            height: 120px;
-            width: 120px;
-            margin: 0 auto;
-            border-radius: 50%;
-            border: 5px solid #fff;
-            background: url("https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&w=1000&q=80") no-repeat;
-            background-size: cover;
-            overflow: hidden
-          }
-          
-          .front__text {
-            position: relative;
-            top: -55px;
-            margin: 0 auto;
-            font-family: "Montserrat";
-            font-size: 18px;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-          }
-          .front__text .front__text-header {
-            font-weight: 700;
-            font-family: "lato";
-            text-transform: uppercase;
-            font-size: 20px;
-          }
-          .front__text .front__text-para {
-            position: relative;
-            top: -5px;
-            color: #000;
-            font-size: 14px;
-            letter-spacing: 0.4px;
-            font-weight: 400;
-            font-family: "lato", sans-serif;
-          }
-          .front__text .front-icons {
-            position: relative;
-            top: 0;
-            font-size: 14px;
-            margin-right: 6px;
-            color: gray;
-          }
-          .front__text .front__text-hover {
-            position: relative;
-            top: 10px;
-            font-family: lato;
-            font-size: 10px;
-            color: tomato;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            border: 2px solid tomato;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: tomato;
-            color: #fff;
-          }
-          
-          .back {
-            transform: rotateY(180deg);
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background-color: white;
-            
-
-            border-radius: 5px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-          }
-          
-          .social-media-wrapper {
-            font-size: 36px;
-          }
-          .social-media-wrapper .social-icon {
-            position: relative;
-            top: 20px;
-            margin-left: 5px;
-            margin-right: 5px;
-            opacity: 0;
-            color: #fff;
-            transition: all 0.4s cubic-bezier(0.3, 0.7, 0.1, 1.9);
-          }
-          .social-media-wrapper .social-icon:nth-child(1) {
-            transition-delay: 0.6s;
-          }
-          .social-media-wrapper .social-icon:nth-child(2) {
-            transition-delay: 0.7s;
-          }
-          .social-media-wrapper .social-icon:nth-child(3) {
-            transition-delay: 0.8s;
-          }
-          .social-media-wrapper .social-icon:nth-child(4) {
-            transition-delay: 0.9s;
-          }
-          
-          .fab {
-            position: relative;
-            top: 0;
-            left: 0;
-            transition: all 200ms ease-in-out;
-          }
-          
-          .fab:hover {
-            top: -5px;
-          }
-          .pfp {
-            height: 50px;
-            width: 50px;
-            border-radius: 50%;
-            display: inline-block;
-          }
-          label {
-            font-size: 12.5px;
-            color: #000;
-            opacity: 0.8;
-            font-weight: 400;
-          }
-          form {
-            padding: 40px 30px;
-            background: #fefefe;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding-bottom: 20px;
-            width: 300px;
-          }
-          form h4 {
-            margin-bottom: 20px;
-            color: rgba(0, 0, 0, 0.5);
-          }
-          form h4 span {
-            color: black;
-            font-weight: 700;
-          }
-          form p {
-            line-height: 155%;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #000;
-            opacity: 0.65;
-            font-weight: 400;
-            max-width: 200px;
-          }
-          
-          
-          
-          button {
-            -webkit-appearance: none;
-            width: auto;
-            min-width: 100px;
-            border-radius: 24px;
-            text-align: center;
-            padding: 15px 40px;
-            margin-top: 5px;
-            background-color: #b08bf8;
-            color: #fff;
-            font-size: 14px;
-            margin-left: auto;
-            font-weight: 500;
-            box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
-            border: none;
-            transition: all 0.3s ease;
-            outline: 0;
-          }
-          button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
-          }
-          button:hover:active {
-            transform: scale(0.99);
-          }
-          
-          input {
-            font-size: 16px;
-            padding: 20px 0px;
-            height: 56px;
-            border: none;
-            border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-            background: #fff;
-            width: 280px;
-            box-sizing: border-box;
-            transition: all 0.3s linear;
-            color: #000;
-            font-weight: 400;
-            -webkit-appearance: none;
-          }
-          input:focus {
-            border-bottom: solid 1px #b69de6;
-            outline: 0;
-            box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
-          }
-          
-          .floating-label {
-            position: relative;
-            margin-bottom: 10px;
-            width: 100%;
-          }
-          .floating-label label {
-            position: absolute;
-            top: calc(50% - 7px);
-            left: 0;
-            opacity: 0;
-            transition: all 0.3s ease;
-            padding-left: 44px;
-          }
-          .floating-label input {
-            width: calc(100% - 44px);
-            margin-left: auto;
-            display: flex;
-          }
-          .floating-label .icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 56px;
-            width: 44px;
-            display: flex;
-          }
-          .floating-label .icon svg {
-            height: 30px;
-            width: 30px;
-            margin: auto;
-            opacity: 0.15;
-            transition: all 0.3s ease;
-          }
-          .floating-label .icon svg path {
-            transition: all 0.3s ease;
-          }
-          .floating-label input:not(:-moz-placeholder-shown) {
-            padding: 28px 0px 12px 0px;
-          }
-          .floating-label input:not(:-ms-input-placeholder) {
-            padding: 28px 0px 12px 0px;
-          }
-          .floating-label input:not(:placeholder-shown) {
-            padding: 28px 0px 12px 0px;
-          }
-          .floating-label input:not(:-moz-placeholder-shown) + label {
-            transform: translateY(-10px);
-            opacity: 0.7;
-          }
-          .floating-label input:not(:-ms-input-placeholder) + label {
-            transform: translateY(-10px);
-            opacity: 0.7;
-          }
-          .floating-label input:not(:placeholder-shown) + label {
-            transform: translateY(-10px);
-            opacity: 0.7;
-          }
-          .floating-label input:valid:not(:-moz-placeholder-shown) + label + .icon svg {
-            opacity: 1;
-          }
-          .floating-label input:valid:not(:-ms-input-placeholder) + label + .icon svg {
-            opacity: 1;
-          }
-          .floating-label input:valid:not(:placeholder-shown) + label + .icon svg {
-            opacity: 1;
-          }
-          .floating-label
-            input:valid:not(:-moz-placeholder-shown)
-            + label
-            + .icon
-            svg
-            path {
-            fill: #b69de6;
-          }
-          .floating-label
-            input:valid:not(:-ms-input-placeholder)
-            + label
-            + .icon
-            svg
-            path {
-            fill: #b69de6;
-          }
-          .floating-label input:valid:not(:placeholder-shown) + label + .icon svg path {
-            fill: #b69de6;
-          }
-          .floating-label input:not(:valid):not(:focus) + label + .icon {
-            -webkit-animation-name: shake-shake;
-            animation-name: shake-shake;
-            -webkit-animation-duration: 0.3s;
-            animation-duration: 0.3s;
-          }
-          
-          @-webkit-keyframes shake-shake {
-            0% {
-              transform: translateX(-3px);
-            }
-            20% {
-              transform: translateX(3px);
-            }
-            40% {
-              transform: translateX(-3px);
-            }
-            60% {
-              transform: translateX(3px);
-            }
-            80% {
-              transform: translateX(-3px);
-            }
-            100% {
-              transform: translateX(0px);
-            }
-          }
-          
-          @keyframes shake-shake {
-            0% {
-              transform: translateX(-3px);
-            }
-            20% {
-              transform: translateX(3px);
-            }
-            40% {
-              transform: translateX(-3px);
-            }
-            60% {
-              transform: translateX(3px);
-            }
-            80% {
-              transform: translateX(-3px);
-            }
-            100% {
-              transform: translateX(0px);
-            }
-          }
-          .session {
-            display: flex;
-            flex-direction: row;
-            width: auto;
-            height: auto;
-            margin: auto auto;
-            background: #ffffff;
-            border-radius: 4px;
-            box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
-          }
-          
-          .left {
-            width: 220px;
-            height: auto;
-            min-height: 100%;
-            position: relative;
-            background-image: url("https://www.alucoildesign.com/assets/app/media/img/bg/bg-1.jpg");
-            background-size: cover;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-          }
-          .left svg {
-            height: 40px;
-            width: auto;
-            margin: 20px;
-          }
-
-    </style>
-    </head>
-    
-    <body id="bg" style="background-image">
-    
-    <div ></div>
-    
-    <div class="outer-div">
-      <div class="inner-div">
-        <div class="front">
-          <div class="front__bkg-photo"></div>
-          <div class="front__face-photo"></div>
-          <div class="front__text">
-            <h3 class="front__text-header">Teacher</h3>
-            {% comment %} <p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>Earth</p> {% endcomment %}
-            
-            <span class="front__text-hover">Hover For SignUp</span>
-          </div>
-        </div>
-        <div class="back">
-          {% comment %} <div class="social-media-wrapper"> {% endcomment %}
-            <form method="post" action="/handleSignUpTeacher" class="log-in social-icon" autocomplete="off"> 
-              {% csrf_token %}
+<html><head>
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   
-              <h4>Welcome!</h4>
-              <div class="floating-label">
-                <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
-                <label for="floatingInput">Username:</label>
-              </div>
-              <div class="floating-label">
-                  <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
-                  <label for="floatingInput">Email:</label>
-                </div>
-              <div class="floating-label">
-                <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
-                <label for="password">Password:</label>
-              </div>
-              <div class="floating-label">
-                  <input placeholder="ConfirmPassword" type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
-                  <label for="password">ConfirmPassword:</label>
-                </div>
-              <button type="submit" href="/handleSignUpTeacher">SignUp</button>
-            </form>
-          {% comment %} </div> {% endcomment %}
-        </div>
-    
-      </div>
-    </div>
-    <div class="outer-div">
-      <div class="inner-div">
-        <div class="front">
-          <div class="front__bkg-photo"></div>
-          <div class="front__face-photo"></div>
-          <div class="front__text">
-            <h3 class="front__text-header">Student</h3>
-            {% comment %} <p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>Earth</p> {% endcomment %}
-            
-            <span class="front__text-hover">Hover For SignUp</span>
-          </div>
-        </div>
-        <div class="back">
-          {% comment %} <div class="social-media-wrapper"> {% endcomment %}
-            
-            {% comment %} <a href="signUpStudent" class="social-icon"><img  src="static/signup.png" class="social-icon pfp"></a>{% endcomment %}
-            <form method="post" action="/handleSignUpStudent" class="log-in social-icon" autocomplete="off"> 
-              {% csrf_token %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <style>
+           #bg{
+          background-image: url('static/bg1.jpg');
+          background-size: 1400px 700px;
+          background-repeat: no-repeat;
+          background-position: top;
+          background-attachment: fixed;}
+      body {
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: lato;
+        }
+        
+        .background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100vh;
+          width: 100vw;
+          background: url("https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?ixlib=rb-0.3.5&s=4222852e25e0f57d9485f7889957e99a&auto=format&fit=crop&w=2000&q=80");
+          background-size: cover;
+          background: #ccc;
+          background-position: 0 50%;
+          background: #DEB493;
+        }
+        .background:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background: rgba(0, 0, 0, 0);
+        }
+        
+        .outer-div,
+        .inner-div {
+          height: 450px;
+          max-width: 300px;
+          margin: 0 auto;
+          position: relative;
+        }
+        
+        .outer-div {
+          perspective: 900px;
+          perspective-origin: 50% calc(50% - 18em);
+        }
+        
+        .inner-div {
+          margin: 0 auto;
+          border-radius: 5px;
+          font-weight: 400;
+          color: #071011;
+          font-size: 1rem;
+          text-align: center;
+          transition: all 0.6s cubic-bezier(0.8, -0.4, 0.2, 1.7);
+          transform-style: preserve-3d;
+        }
+        .inner-div:hover .social-icon {
+          opacity: 1;
+          top: 0;
+        }
+        
+        .outer-div:hover .inner-div {
+          transform: rotateY(180deg);
+        }
+        
+        .front,
+        .back {
+          position: relative;
+          top: 0;
+          left: 0;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+        }
+        
+        .front {
+          cursor: pointer;
+          height: 100%;
+          background: #fff;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+          border-radius: 5px;
+          box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+        
+        .front__bkg-photo {
+          position: relative;
+          height: 150px;
+          width: 300px;
+          background: url("https://images.unsplash.com/photo-1511207538754-e8555f2bc187?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=88672068827eaeeab540f584b883cc66&auto=format&fit=crop&w=1164&q=80") no-repeat;
+          background-size: cover;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+          overflow: hidden;
+          border-top-right-radius: 5px;
+          border-top-left-radius: 5px;
+        }
+        .front__bkg-photo:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+        
+        .front__face-photo {
+          position: relative;
+          top: -60px;
+          height: 120px;
+          width: 120px;
+          margin: 0 auto;
+          border-radius: 50%;
+          border: 5px solid #fff;
+          background: url("https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&w=1000&q=80") no-repeat;
+          background-size: cover;
+          overflow: hidden
+        }
+        
+        .front__text {
+          position: relative;
+          top: -55px;
+          margin: 0 auto;
+          font-family: "Montserrat";
+          font-size: 18px;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+        }
+        .front_text .front_text-header {
+          font-weight: 700;
+          font-family: "lato";
+          text-transform: uppercase;
+          font-size: 20px;
+        }
+        .front_text .front_text-para {
+          position: relative;
+          top: -5px;
+          color: #000;
+          font-size: 14px;
+          letter-spacing: 0.4px;
+          font-weight: 400;
+          font-family: "lato", sans-serif;
+        }
+        .front__text .front-icons {
+          position: relative;
+          top: 0;
+          font-size: 14px;
+          margin-right: 6px;
+          color: gray;
+        }
+        .front_text .front_text-hover {
+          position: relative;
+          top: 10px;
+          font-family: lato;
+          font-size: 10px;
+          color: tomato;
+          -webkit-backface-visibility: hidden;
+                  backface-visibility: hidden;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
+          border: 2px solid tomato;
+          padding: 8px 15px;
+          border-radius: 30px;
+          background: tomato;
+          color: #fff;
+        }
+        
+        .back {
+          transform: rotateY(180deg);
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: white;
+          
+
+          border-radius: 5px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .social-media-wrapper {
+          font-size: 36px;
+        }
+        .social-media-wrapper .social-icon {
+          position: relative;
+          top: 20px;
+          margin-left: 5px;
+          margin-right: 5px;
+          opacity: 0;
+          color: #fff;
+          transition: all 0.4s cubic-bezier(0.3, 0.7, 0.1, 1.9);
+        }
+        .social-media-wrapper .social-icon:nth-child(1) {
+          transition-delay: 0.6s;
+        }
+        .social-media-wrapper .social-icon:nth-child(2) {
+          transition-delay: 0.7s;
+        }
+        .social-media-wrapper .social-icon:nth-child(3) {
+          transition-delay: 0.8s;
+        }
+        .social-media-wrapper .social-icon:nth-child(4) {
+          transition-delay: 0.9s;
+        }
+        
+        .fab {
+          position: relative;
+          top: 0;
+          left: 0;
+          transition: all 200ms ease-in-out;
+        }
+        
+        .fab:hover {
+          top: -5px;
+        }
+        .pfp {
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        label {
+          font-size: 12.5px;
+          color: #000;
+          opacity: 0.8;
+          font-weight: 400;
+        }
+        form {
+          padding: 40px 30px;
+          background: #fefefe;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-bottom: 20px;
+          width: 300px;
+        }
+        form h4 {
+          margin-bottom: 20px;
+          color: rgba(0, 0, 0, 0.5);
+        }
+        form h4 span {
+          color: black;
+          font-weight: 700;
+        }
+        form p {
+          line-height: 155%;
+          margin-bottom: 5px;
+          font-size: 14px;
+          color: #000;
+          opacity: 0.65;
+          font-weight: 400;
+          max-width: 200px;
+        }
+        
+        
+        
+        button {
+          -webkit-appearance: none;
+          width: auto;
+          min-width: 100px;
+          border-radius: 24px;
+          text-align: center;
+          padding: 15px 40px;
+          margin-top: 5px;
+          background-color: #b08bf8;
+          color: #fff;
+          font-size: 14px;
+          margin-left: auto;
+          font-weight: 500;
+          box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+          border: none;
+          transition: all 0.3s ease;
+          outline: 0;
+        }
+        button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
+        }
+        button:hover:active {
+          transform: scale(0.99);
+        }
+        
+        input {
+          font-size: 16px;
+          padding: 20px 0px;
+          height: 56px;
+          border: none;
+          border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+          background: #fff;
+          width: 280px;
+          box-sizing: border-box;
+          transition: all 0.3s linear;
+          color: #000;
+          font-weight: 400;
+          -webkit-appearance: none;
+        }
+        input:focus {
+          border-bottom: solid 1px #b69de6;
+          outline: 0;
+          box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+        }
+        
+        .floating-label {
+          position: relative;
+          margin-bottom: 10px;
+          width: 100%;
+        }
+        .floating-label label {
+          position: absolute;
+          top: calc(50% - 7px);
+          left: 0;
+          opacity: 0;
+          transition: all 0.3s ease;
+          padding-left: 44px;
+        }
+        .floating-label input {
+          width: calc(100% - 44px);
+          margin-left: auto;
+          display: flex;
+        }
+        .floating-label .icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 56px;
+          width: 44px;
+          display: flex;
+        }
+        .floating-label .icon svg {
+          height: 30px;
+          width: 30px;
+          margin: auto;
+          opacity: 0.15;
+          transition: all 0.3s ease;
+        }
+        .floating-label .icon svg path {
+          transition: all 0.3s ease;
+        }
+        .floating-label input:not(:-moz-placeholder-shown) {
+          padding: 28px 0px 12px 0px;
+        }
+        .floating-label input:not(:-ms-input-placeholder) {
+          padding: 28px 0px 12px 0px;
+        }
+        .floating-label input:not(:placeholder-shown) {
+          padding: 28px 0px 12px 0px;
+        }
+        .floating-label input:not(:-moz-placeholder-shown) + label {
+          transform: translateY(-10px);
+          opacity: 0.7;
+        }
+        .floating-label input:not(:-ms-input-placeholder) + label {
+          transform: translateY(-10px);
+          opacity: 0.7;
+        }
+        .floating-label input:not(:placeholder-shown) + label {
+          transform: translateY(-10px);
+          opacity: 0.7;
+        }
+        .floating-label input:valid:not(:-moz-placeholder-shown) + label + .icon svg {
+          opacity: 1;
+        }
+        .floating-label input:valid:not(:-ms-input-placeholder) + label + .icon svg {
+          opacity: 1;
+        }
+        .floating-label input:valid:not(:placeholder-shown) + label + .icon svg {
+          opacity: 1;
+        }
+        .floating-label
+          input:valid:not(:-moz-placeholder-shown)
+          + label
+          + .icon
+          svg
+          path {
+          fill: #b69de6;
+        }
+        .floating-label
+          input:valid:not(:-ms-input-placeholder)
+          + label
+          + .icon
+          svg
+          path {
+          fill: #b69de6;
+        }
+        .floating-label input:valid:not(:placeholder-shown) + label + .icon svg path {
+          fill: #b69de6;
+        }
+        .floating-label input:not(:valid):not(:focus) + label + .icon {
+          -webkit-animation-name: shake-shake;
+          animation-name: shake-shake;
+          -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+        }
+        
+        @-webkit-keyframes shake-shake {
+          0% {
+            transform: translateX(-3px);
+          }
+          20% {
+            transform: translateX(3px);
+          }
+          40% {
+            transform: translateX(-3px);
+          }
+          60% {
+            transform: translateX(3px);
+          }
+          80% {
+            transform: translateX(-3px);
+          }
+          100% {
+            transform: translateX(0px);
+          }
+        }
+        
+        @keyframes shake-shake {
+          0% {
+            transform: translateX(-3px);
+          }
+          20% {
+            transform: translateX(3px);
+          }
+          40% {
+            transform: translateX(-3px);
+          }
+          60% {
+            transform: translateX(3px);
+          }
+          80% {
+            transform: translateX(-3px);
+          }
+          100% {
+            transform: translateX(0px);
+          }
+        }
+        .session {
+          display: flex;
+          flex-direction: row;
+          width: auto;
+          height: auto;
+          margin: auto auto;
+          background: #ffffff;
+          border-radius: 4px;
+          box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
+        }
+        
+        .left {
+          width: 220px;
+          height: auto;
+          min-height: 100%;
+          position: relative;
+          background-image: url("https://www.alucoildesign.com/assets/app/media/img/bg/bg-1.jpg");
+          background-size: cover;
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+        .left svg {
+          height: 40px;
+          width: auto;
+          margin: 20px;
+        }
+
+  </style>
+  <meta name="google-signin-client_id" content="409902206851-6cjkgiulkm0at27dcuksls84nphqq2at.apps.googleusercontent.com">
+  </head>
   
-              <h4>Welcome!</h4>
-              <div class="floating-label">
-                <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
-                <label for="floatingInput">Username:</label>
-              </div>
-              <div class="floating-label">
-                  <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
-                  <label for="floatingInput">Email:</label>
-                </div>
-              <div class="floating-label">
-                <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
-                <label for="password">Password:</label>
-              </div>
-              <div class="floating-label">
-                  <input placeholder="ConfirmPassword" type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
-                  <label for="password">ConfirmPassword:</label>
-                </div>
-              <button type="submit" href="/handleSignUpStudent">SignUp</button>
-            </form>
-          {% comment %} </div> {% endcomment %}
+  <body id="bg" style="background-image">
+  
+  <div ></div>
+  
+  <div class="outer-div">
+    <div class="inner-div">
+      <div class="front">
+        <div class="front__bkg-photo"></div>
+        <div class="front__face-photo"></div>
+        <div class="front__text">
+          <h3 class="front__text-header">Teacher</h3>
+          {% comment %} <p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>Earth</p> {% endcomment %}
+          
+          <span class="front__text-hover">Hover For SignUp</span>
         </div>
-    
       </div>
+      <div class="back">
+        {% comment %} <div class="social-media-wrapper"> {% endcomment %}
+          <form method="post" action="/handleSignUpTeacher" class="log-in social-icon" autocomplete="off"> 
+            {% csrf_token %}
+
+            <h4>Welcome!</h4>
+            <div class="floating-label">
+              <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
+              <label for="floatingInput">Username:</label>
+            </div>
+            <div class="floating-label">
+                <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
+                <label for="floatingInput">Email:</label>
+              </div>
+            <div class="floating-label">
+              <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
+              <label for="password">Password:</label>
+            </div>
+            <div class="floating-label">
+                <input placeholder="ConfirmPassword" type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
+                <label for="password">ConfirmPassword:</label>
+              </div>
+            <button type="submit" href="/handleSignUpTeacher">SignUp</button>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <script>
+              function onSuccess(googleUser) {
+                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+              }
+              function onFailure(error) {
+                console.log(error);
+              }
+              function renderButton() {
+                gapi.signin2.render('my-signin2', {
+                  'scope': 'profile email',
+                  'width': 240,
+                  'height': 50,
+                  'longtitle': true,
+                  'theme': 'dark',
+                  'onsuccess': onSuccess,
+                  'onfailure': onFailure
+                });
+              }
+          
+              function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+          }
+            </script>
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+          </form>
+        {% comment %} </div> {% endcomment %}
+      </div>
+  
     </div>
-      </body>
+  </div>
+  <div class="outer-div">
+    <div class="inner-div">
+      <div class="front">
+        <div class="front__bkg-photo"></div>
+        <div class="front__face-photo"></div>
+        <div class="front__text">
+          <h3 class="front__text-header">Student</h3>
+          {% comment %} <p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>Earth</p> {% endcomment %}
+          
+          <span class="front__text-hover">Hover For SignUp</span>
+        </div>
+      </div>
+      <div class="back">
+        {% comment %} <div class="social-media-wrapper"> {% endcomment %}
+          
+          {% comment %} <a href="signUpStudent" class="social-icon"><img  src="static/signup.png" class="social-icon pfp"></a>{% endcomment %}
+          <form method="post" action="/handleSignUpStudent" class="log-in social-icon" autocomplete="off"> 
+            {% csrf_token %}
+
+            <h4>Welcome!</h4>
+            <div class="floating-label">
+              <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
+              <label for="floatingInput">Username:</label>
+            </div>
+            <div class="floating-label">
+                <input placeholder="Email" type="email" name="email" id="email" autocomplete="off">
+                <label for="floatingInput">Email:</label>
+              </div>
+            <div class="floating-label">
+              <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
+              <label for="password">Password:</label>
+            </div>
+            <div class="floating-label">
+                <input placeholder="ConfirmPassword" type="password" name="confirmPassword" id="confirmPassword" autocomplete="off">
+                <label for="password">ConfirmPassword:</label>
+              </div>
+            <button type="submit" href="/handleSignUpStudent">SignUp</button>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <script>
+              function onSuccess(googleUser) {
+                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+              }
+              function onFailure(error) {
+                console.log(error);
+              }
+              function renderButton() {
+                gapi.signin2.render('my-signin2', {
+                  'scope': 'profile email',
+                  'width': 240,
+                  'height': 50,
+                  'longtitle': true,
+                  'theme': 'dark',
+                  'onsuccess': onSuccess,
+                  'onfailure': onFailure
+                });
+              }
+          
+              function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+          }
+            </script>
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+          </form>
+        {% comment %} </div> {% endcomment %}
+      </div>
+  
+    </div>
+  </div>
+    </body>
+   </html>
