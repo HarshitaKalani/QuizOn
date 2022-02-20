@@ -45,7 +45,6 @@ def loginuser(request):
                 return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
             else:
                 return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Join Quiz"})
-
         else:
             return render(request,"login.html")
     else:
@@ -109,6 +108,16 @@ def CreateQuiz(request):
         return render(request,"createQuiz.html",{"createQuiz":"Create Quiz","NameOfTheQuiz": "Name the Quiz", "create": "create"})
     else:
         return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
+def handleSave(request):
+    user=request.user
+    login(request,user)
+    first=AllQuizes.objects.filter(tutorName=user)
+    quizes=[]
+    for i in first.iterator():
+        quiz1=QuizFinal.objects.filter(tutor=i)
+        quizes.append(quiz1)
+    quizes.reverse()
+    return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
 def contact(request):
     return render (request, "contact.html")
 def is_valid_uuid(value):
@@ -287,8 +296,7 @@ def handleImportSpreadsheet(request):
                     options.append(imported_data['Option 3'][i])
                 if(imported_data['Option 4'][i] is not None):
                     options.append(imported_data['Option 4'][i])
-                
-               
+
                 if(len(options)==0):
                     question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer)
                     question1.save()
@@ -390,7 +398,22 @@ def handleNextQuestion(request):
                 opLengthBool=False
             return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
         else:
-            return render(request,"index.html")
+            code=request.POST.get('quizCheck')
+            quiz2=QuizFinal.objects.filter(code=code)[0]
+            questions=QuestionFinal.objects.filter(tutor=quiz2)
+            user=request.user
+            student=StudentFinal.objects.filter(quiz=quiz2,nameOfStudent=user.username)
+            for j in student.iterator():
+                marks=0
+                
+                total_marks=0
+                for i in questions.iterator():
+                    total_marks+=i.marks
+                    answ=AnswerFinal.objects.filter(quiz=quiz2,question=i, student=j)
+                    if(str(i.ans[:-1])==str(answ.answer)):
+                        marks+=i.marks
+                
+            return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
 
 def handleDeleteQuiz(request):
     if request.method=="POST":
@@ -450,4 +473,22 @@ def handleAnswerResponse(request):
                 opLengthBool=False
             return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
         else:
-            return render(request,"index.html")
+            code=request.POST.get('quizCheck')
+            quiz2=QuizFinal.objects.filter(code=code)[0]
+            questions=QuestionFinal.objects.filter(tutor=quiz2)
+            user=request.user
+            student=StudentFinal.objects.filter(quiz=quiz2,nameOfStudent=user.username)
+            for j in student.iterator():
+                marks=0
+                
+                total_marks=0
+                for i in questions.iterator():
+                    total_marks+=i.marks
+                    answ=AnswerFinal.objects.filter(quiz=quiz2,question=i, student=j)[0]
+                    # print(i.ans)
+                    # print(answ.answer)
+                    if(str(i.ans[:-1])==str(answ.answer)):
+                        marks+=i.marks
+                
+            return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
+
