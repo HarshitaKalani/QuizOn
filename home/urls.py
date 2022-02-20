@@ -30,8 +30,11 @@ urlpatterns = [
     path("handleDeleteQuiz" ,views.handleDeleteQuiz, name='handleDeleteQuiz'),
     path("handleAnswerResponse" ,views.handleAnswerResponse, name='handleAnswerResponse'),
     path("handleSave" ,views.handleSave, name='handleSave'),
+<<<<<<< Updated upstream
     path("newHandleAnswerResponse" ,views.newHandleAnswerResponse, name='newHandleAnswerResponse'),
 
+=======
+>>>>>>> Stashed changes
 
 
 

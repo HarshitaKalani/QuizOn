@@ -493,6 +493,7 @@ def handleAnswerResponse(request):
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 def newHandleAnswerResponse(request):
     if request.method=="POST":
         code=request.POST.get('ansQuizCode')
@@ -578,5 +579,7 @@ def newHandleAnswerResponse(request):
                         marks+=i.marks
                 
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
