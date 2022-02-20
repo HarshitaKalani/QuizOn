@@ -101,9 +101,9 @@
                   <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
                   <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
                   <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
-                  <input><textarea rows="8" cols="100" id="ans"name="ans" placeholder="Enter Answer Here"></textarea></input>
+                  <textarea rows="8" cols="100" id="ans"name="ans" placeholder="Enter Answer Here"></textarea>
                   
-                  <a href="/newHandleAnswerResponse"><button type="submit" class="btn center" style="position:relative;left:75%;">Next Question</button>
+                  <a href="/newHandleAnswerResponse"><button type="submit" class="btn center" style="position:relative;left:75%;">Save&Next</button>
             </div>
             
             </form>
@@ -203,11 +203,9 @@
                 </label>
               </div>
           
-            
-          
-            {% endif %}
-          </div>
-          <div>
+              
+            </div>
+            <div>
             
               <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{code}}">
               <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
@@ -220,7 +218,9 @@
               <a href="#"><button id="endQuiz" class="btn" style="position:absolute;right:20px;bottom:20px;" hidden>EndQuiz</button></a>
 
             </form>
+            {% endif %}
           </div>
+          
           <script type="text/javascript">
             // Set the date we're counting down to
             var x = parseInt(document.getElementById("queT").value);

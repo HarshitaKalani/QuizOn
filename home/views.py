@@ -110,7 +110,7 @@ def CreateQuiz(request):
         return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
 def handleSave(request):
     user=request.user
-    login(request,user)
+    login(request,user, backend='django.contrib.auth.backends.ModelBackend')
     first=AllQuizes.objects.filter(tutorName=user)
     quizes=[]
     for i in first.iterator():
@@ -282,7 +282,7 @@ def handleImportSpreadsheet(request):
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
         quizTime=0
-        ansHere=""
+        
         for i in range(len(imported_data['Question Text'])):
             if(imported_data['Question Text'][i] is not None):
                 options=[]
@@ -296,7 +296,13 @@ def handleImportSpreadsheet(request):
                     options.append(imported_data['Option 3'][i])
                 if(imported_data['Option 4'][i] is not None):
                     options.append(imported_data['Option 4'][i])
-
+                ansHere=""
+                if(imported_data['Correct Answer'][i] is not None):
+                    ans=list(str(imported_data['Correct Answer'][i]).split(","))
+                    print(ans)
+                    for j in range(len(ans)):
+                        ansHere+=options[int(ans[j])-1]
+                        ansHere+=";"
                 if(len(options)==0):
                     question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer,ans=ansHere)
                     question1.save()

@@ -7,5 +7,4 @@ urlpatterns = [
     path('',include('home.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
     path('accounts/', include('allauth.urls')),
- 
 ]
