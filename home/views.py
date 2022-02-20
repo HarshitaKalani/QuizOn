@@ -108,6 +108,16 @@ def CreateQuiz(request):
         return render(request,"createQuiz.html",{"createQuiz":"Create Quiz","NameOfTheQuiz": "Name the Quiz", "create": "create"})
     else:
         return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
+def handleSave(request):
+    user=request.user
+    login(request,user)
+    first=AllQuizes.objects.filter(tutorName=user)
+    quizes=[]
+    for i in first.iterator():
+        quiz1=QuizFinal.objects.filter(tutor=i)
+        quizes.append(quiz1)
+    quizes.reverse()
+    return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
 def contact(request):
     return render (request, "contact.html")
 def is_valid_uuid(value):
