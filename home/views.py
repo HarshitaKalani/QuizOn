@@ -154,7 +154,7 @@ def quizQuery(request):
                     opLengthBool=True
                     if (len(optionHere)!=0):
                         opLengthBool=False
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz,"opLengthBool":opLengthBool})
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz,"opLengthBool":opLengthBool,"opLength":len(optionHere),})
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -290,19 +290,19 @@ def handleImportSpreadsheet(request):
                 
                
                 if(len(options)==0):
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer,ans=ansHere)
                     question1.save()
                 elif len(options)==1:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1, questionTimer=timer)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1, questionTimer=timer,ans=ansHere)
                     question1.save()
                 elif len(options)==2:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1, questionTimer=timer)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1, questionTimer=timer,ans=ansHere)
                     question1.save()
                 elif len(options)==3:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1, questionTimer=timer)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1, questionTimer=timer,ans=ansHere)
                     question1.save()
                 elif len(options)==4:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer,ans=ansHere)
                     question1.save()
         quiz1.quizTimer=quizTime
         quiz1.save()
@@ -388,7 +388,7 @@ def handleNextQuestion(request):
             opLengthBool=True
             if (len(optionHere)!=0):
                 opLengthBool=False
-            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
+            return render(request,"quizStarted.html",{"que":questions[index],"options":list(optionHere),"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool,"opLength":len(optionHere),})
         else:
             return render(request,"index.html")
 
@@ -450,4 +450,107 @@ def handleAnswerResponse(request):
                 opLengthBool=False
             return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool})
         else:
-            return render(request,"index.html")
+            code=request.POST.get('quizCheck')
+            quiz2=QuizFinal.objects.filter(code=code)[0]
+            questions=QuestionFinal.objects.filter(tutor=quiz2)
+            user=request.user
+            student=StudentFinal.objects.filter(quiz=quiz2,nameOfStudent=user.username)
+            for j in student.iterator():
+                marks=0
+                
+                total_marks=0
+                for i in questions.iterator():
+                    total_marks+=i.marks
+                    answ=AnswerFinal.objects.filter(quiz=quiz2,question=i, student=j)[0]
+                    # print(i.ans)
+                    # print(answ.answer)
+                    if(str(i.ans[:-1])==str(answ.answer)):
+                        marks+=i.marks
+                
+            return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
+
+def newHandleAnswerResponse(request):
+    if request.method=="POST":
+        code=request.POST.get('ansQuizCode')
+        que=request.POST.get('ansQuestion')
+        quiz=QuizFinal.objects.filter(code=code)
+        print(code)
+        quiz1=quiz[0]
+        question=QuestionFinal.objects.filter(tutor=quiz1, que=que)[0]
+        user=request.user
+        studentHere=StudentFinal.objects.filter(quiz=quiz1,nameOfStudent=user.username)[0]
+        op1Select=request.POST.get('op1select')
+        op2Select=request.POST.get('op2select')
+        op3Select=request.POST.get('op3select')
+        op4Select=request.POST.get('op4select')
+        lst=[op1Select,op2Select,op3Select,op4Select]
+        print(lst)
+        opLst=[question.op1,question.op2,question.op3,question.op4]
+        Ans=[]
+        for i in range(len(lst)):
+            if lst[i] is None:
+                pass
+            else:
+                Ans.append(opLst[i])
+        print(Ans)
+        ansHere=""
+        for i in Ans:
+            ansHere+=i
+            ansHere+=";"
+        ansSub=request.POST.get('ans')
+        print(ansHere)
+        if(len(Ans)==0 and ansSub is not None and ansSub!=" "):
+            if(ansSub is not None and ansSub!=" "): 
+                ansHere=ansSub
+            else:
+                ansHere=""
+        print(ansHere)
+        ans1=AnswerFinal.objects.create(quiz=quiz1,question=question,student=studentHere,answer=ansHere)
+        ans1.save()
+
+        index=int(request.POST.get('questionIndex'))+1
+        quiz2=QuizFinal.objects.filter(code=code)[0]
+        questions=list(QuestionFinal.objects.filter(tutor=quiz2))
+        # stud=StudentFinal.objects.filter(quiz=quiz2)
+        if(quiz2.bool==True and index<len(questions)):
+            optionHere=[]
+            op1=questions[index].op1
+            op2=questions[index].op2
+            op3=questions[index].op3
+            op4=questions[index].op4
+            options=[op1,op2,op3,op4]
+            for i in options:
+                if(i!=" " and len(i)!=0):
+                    optionHere.append(i)
+            # print(len(optionHere))
+            # print(questions[index].questionTimer)
+            totalTime=quiz2.quizTimer-questions[index-1].questionTimer
+            # print(curr_time)
+            # print(type(curr_time))
+            # totalTime=quiz2.quizTimer
+            opLengthBool=True
+            if (len(optionHere)!=0):
+                opLengthBool=False
+            return render(request,"quizStarted.html",{"que":questions[index],"options":optionHere,"code":code,"questionIndex":index, "timer": questions[index].questionTimer,"quizTime":totalTime,"quizCode":code,"opLengthBool":opLengthBool,"opLength":len(optionHere),})
+        else:   
+            code=request.POST.get('ansQuizCode')
+            quiz2=QuizFinal.objects.filter(code=code)[0]
+            questions=QuestionFinal.objects.filter(tutor=quiz2)
+            user=request.user
+            student=StudentFinal.objects.filter(quiz=quiz2,nameOfStudent=user.username)
+            for j in student.iterator():
+                marks=0
+                
+                total_marks=0
+                for i in questions.iterator():
+                    total_marks+=i.marks
+                    answ=AnswerFinal.objects.filter(quiz=quiz2,question=i, student=j)[0]
+                    # print(i.ans)
+                    # print(answ.answer)
+                    if(str(i.ans)!=" " and len(str(i.ans))!=0):
+                        if((i.ans)==str(answ.answer)):
+                            marks+=i.marks
+                    else:
+                        marks+=i.marks
+                
+            return render(request,"result.html",{"percentage":(marks/total_marks)*100,})

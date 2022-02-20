@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="static\assets\quizStarted\timer.css" rel="stylesheet">
 
         <style>
+         
             .limit{
                 width:200px;
                 word-wrap: break-word;
@@ -33,6 +34,14 @@
               flex-direction: column;
               margin-right:25px;
           }
+          input{
+            all: revert;
+          }
+          :checked + label {
+            {% comment %} border: 1px solid rgba(81, 203, 238, 1);
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1); {% endcomment %}
+          }
+          
         </style>
         {% comment %} <script>
           var a=parseInt(document.getElementById('quizT').value);
@@ -44,6 +53,7 @@
         <div class="box " style="margin-left: 28px;">
             <h2 class="center">
               {{que.que}}
+              <input type="hidden" id="optionsHereScript" name="optionsHereScript" value="{{options}}">
             </h2>
               <h2 class="center"></h2>
               
@@ -63,7 +73,7 @@
           </div>
           <div class="boxQuestionTimer" style="position: absolute;right:10px;">
             <h3 class="center">Time Left</h3>
-            <form method="post" action="/handleNextQuestion" class="log-in">
+            <form method="post" action="/newHandleAnswerResponse" class="log-in">
               {% csrf_token %}
             <h3 class="center" id="h2queT" name="h2queT">{{timer}}</h3>
             <input type="hidden" id="queT" name="queT" value={{timer}}>
@@ -73,21 +83,7 @@
                 var y=1000*x;
                 setInterval(function () {document.getElementById("savenext").click();}, y);
               </script> {% endcomment %}
-              <script type="text/javascript">
-                // Set the date we're counting down to
-                var x = parseInt(document.getElementById("queT").value);
-                var y = parseInt(document.getElementById("quizT").value);
-               setInterval(function(){
-                  x=x-1;
-                  y=y-1;
-                  
-                  document.getElementById("h2queT").innerHTML=x;
-                  document.getElementById("h2quizT").innerHTML=y;
-                  if(x<0 ){
-                    document.getElementById("savenext").click();
-                  }
-                },1000);
-                </script>
+              
               
             <div class="floating-label">
                       
@@ -96,7 +92,7 @@
           </div>
           <div class="wrapper" style="color:black;position:absolute;top:250px;">
             {% if opLengthBool %}
-            <form method="post" action="/handleAnswerResponse" class="log-in">
+            <form method="post" action="/newHandleAnswerResponse" class="log-in">
               {% csrf_token %}
             <div class="boxOption2">
                 
@@ -107,12 +103,12 @@
                 <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
                 <input><textarea rows="8" cols="100" id="ans"name="ans" placeholder="Enter Answer Here"></textarea></input>
                   
-                  <a href="/handleAnswerResponse"><button type="submit" class="btn center" style="position:relative;left:75%;">Next Question</button>
+                  <a href="/newHandleAnswerResponse"><button type="submit" class="btn center" style="position:relative;left:75%;">Next Question</button>
             </div>
             
-          </form>
+            </form>
             {% else %}
-            {% for i in options %}
+            {% comment %} {% for i in options %}
             <form method="post" action="/handleAnswerResponse" class="log-in">
               {% csrf_token %}
             <a href="/handleAnswerResponse"><button type="submit"><div class="boxOption">
@@ -128,19 +124,133 @@
             </div></button></a>
             
           </form>
-            {% endfor %}
+            {% endfor %} {% endcomment %}
+            <form method="post" action="/newHandleAnswerResponse" class="log-in wrapper">
+              {% csrf_token %}
+              <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{code}}">
+              <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+              {% comment %} <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}> {% endcomment %}
+              <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+
+              <div id="welcomeDiv1" style="display:none;" class="answer_list">
+                <input type="checkbox" id="op1select" name="op1select" style="position:relative;left:80%;top:15%;"/>
+                <label for="op1select">  
+                  <div class="boxOption">
+                    <div class="floating-label">  
+                      <p class="limit">{{i}}</p>
+
+                      <input type="hidden" id="ans" name="ans" value="{{i}}">
+                      <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                      <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                      <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                      <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                      
+                    </div>
+                  </div>
+                </label>
+
+              </div>
+              <div id="welcomeDiv2" style="display:none;" class="answer_list">
+                <input type="checkbox" id="op2select" name="op2select" style="position:relative;left:80%;top:15%;"/>
+                <label for="op2select">  
+                  <div class="boxOption">
+                    <div class="floating-label">  
+                      <p class="limit">{{i}}</p>
+
+                      <input type="hidden" id="ans" name="ans" value="{{i}}">
+                      <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                      <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                      <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                      <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                      
+                    </div>
+                  </div>
+                </label>
+
+              </div>
+              <div id="welcomeDiv3" style="display:none;" class="answer_list">
+                <input type="checkbox" id="op3select" name="op3select" style="position:relative;left:80%;top:15%;"/>
+                <label for="op3select">  
+                  <div class="boxOption">
+                    <div class="floating-label">  
+                      <p class="limit">{{i}}</p>
+
+                      <input type="hidden" id="ans" name="ans" value="{{i}}">
+                      <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                      <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                      <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                      <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                      
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div id="welcomeDiv4" style="display:none;" class="answer_list">
+                <input type="checkbox" id="op4select" name="op4select" style="position:relative;left:80%;top:15%;"/>
+                <label for="op4select">  
+                  <div class="boxOption">
+                    <div class="floating-label">  
+                      <p class="limit">{{i}}</p>
+
+                      <input type="hidden" id="ans" name="ans" value="{{i}}">
+                      <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{quizCode}}">
+                      <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+                      <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+                      <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+                      
+                    </div>
+                  </div>
+                </label>
+              </div>
+          
+            
+          
             {% endif %}
           </div>
           <div>
-            <form method="post" action="/handleNextQuestion" class="log-in">
-              {% csrf_token %}
-              <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
-              <input type="hidden" id="questionIndex" name="questionIndex" value={{questionIndex}}>
+            
+              <input type="hidden" id="ansQuizCode" name="ansQuizCode" value="{{code}}">
+              <input type="hidden" id="ansQuestion" name="ansQuestion" value="{{que.que}}">
+              {% comment %} <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}> {% endcomment %}
+              <input type="hidden" id="questionIndex" name="questionIndex" value="{{questionIndex}}">
+              {% comment %} <input type="hidden" id="quizCheck" name="quizCheck" value={{code}}>
+              <input type="hidden" id="questionIndex" name="questionIndex" value={{questionIndex}}> {% endcomment %}
 
-              <a href="/handleNextQuestion"><button id="savenext" class="btn" style="position:absolute;right:20px;bottom:20px;">Save&Next</button></a>
+              <a href="/newHandleAnswerResponse"><button id="savenext" class="btn" style="position:absolute;right:20px;bottom:20px;">Save&Next</button></a>
               <a href="#"><button id="endQuiz" class="btn" style="position:absolute;right:20px;bottom:20px;" hidden>EndQuiz</button></a>
 
             </form>
           </div>
+          <script type="text/javascript">
+            // Set the date we're counting down to
+            var x = parseInt(document.getElementById("queT").value);
+            var y = parseInt(document.getElementById("quizT").value);
+            var opt="{{opLength}}";
+            var optionHere2=document.getElementById("optionsHereScript").value;
+            var optionHere1=optionHere2.slice(1,(optionHere2.length)-1);
+            var optionHere=optionHere1.split(",")
+            console.log(opt);
+            console.log("oopt aboove");
+            console.log(optionHere);
+            console.log("optionsabove");
+            var divHere=document.querySelectorAll(".answer_list")
+            console.log(divHere);
+            var pHere=document.querySelectorAll(".limit");
+            for (var i=0;i<opt;i=i+1){
+              console.log(optionHere[i]);
+              divHere[i].style.display="block";
+              pHere[i].innerHTML=optionHere[i];
+            }
+           setInterval(function(){
+              x=x-1;
+              y=y-1;
+              
+              document.getElementById("h2queT").innerHTML=x;
+              document.getElementById("h2quizT").innerHTML=y;
+              if(x<0 ){
+                document.getElementById("savenext").click();
+              }
+            },1000);
+            </script>
     </body>
 </html>
