@@ -282,7 +282,7 @@ def handleImportSpreadsheet(request):
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
         quizTime=0
-
+        ansHere=""
         for i in range(len(imported_data['Question Text'])):
             if(imported_data['Question Text'][i] is not None):
                 options=[]
@@ -492,8 +492,6 @@ def handleAnswerResponse(request):
                 
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 def newHandleAnswerResponse(request):
     if request.method=="POST":
         code=request.POST.get('ansQuizCode')
@@ -579,7 +577,3 @@ def newHandleAnswerResponse(request):
                         marks+=i.marks
                 
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
