@@ -189,6 +189,7 @@ def handleMultipleChoice(request):
         op4Here=request.POST.get('op4Here')
         marks=request.POST.get('marks')
         timer=request.POST.get('timer')
+        label=request.POST.get('label')
         op1Select=request.POST.get('op1select')
         op2Select=request.POST.get('op2select')
         op3Select=request.POST.get('op3select')
@@ -216,7 +217,7 @@ def handleMultipleChoice(request):
         current_user=request.user
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
-        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer))
+        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer),label=label)
         question1.save()
         return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
 
