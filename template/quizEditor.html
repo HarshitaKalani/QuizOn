@@ -112,12 +112,12 @@
                 <a id="main-nav-about-btn" class="nav-menu-item" href="/">{{nameOfQuiz}}</a>
         
                 <a id="main-nav-license-btn" class="  nav-menu-item" href="/">Settings</a>
-        
-                <!--<a id="main-nav-blog-btn" class="nav-menu-item" href="https://blog.uidesigndaily.com/" target="_blank">Blog</a>-->
-                <a id="main-nav-contact-btn" class="nav-menu-item" href="/handlePreview">Preview Quiz</a>
-                
                 <a id="main-nav-contact-btn" class="nav-menu-item fas fa-cloud-download" href="/handleSave">Save</a>
-        
+                <!--<a id="main-nav-blog-btn" class="nav-menu-item" href="https://blog.uidesigndaily.com/" target="_blank">Blog</a>-->
+                
+                    
+                
+                
             </nav>
           
         
@@ -145,7 +145,7 @@
 
            
         </div>
-        <div class="boxRight">
+        <div class="boxRight" style="height:250px;">
             <br>
             <h2 style="text-align:center;" >{{nameOfQuiz}}</h2>
             <p>-----------------------------------------------------------------</p>
@@ -156,7 +156,14 @@
                 
                 <a href="/handleImport"><h5 style="padding-left:10px; padding-top:10px;">  Import From Spreadsheet </h5></a>
                 <a href="/"><h5 style="padding-left:10px; padding-top:10px;">  Add grades </h5></a>
+                <form method="post" action="/handlePreview" autocomplete="off"> 
+                    {% csrf_token %}
+                    <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
+                    <a id="main-nav-contact-btn" class="nav-menu-item" href="/handlePreview"><h2 style="text-align:center;color:black;" ><button type="submit" class="filter git">Preview Quiz</button></h2></a>
+                </form>
+                <p>{{quizCode}}</p>
                 <p>-----------------------------------------------------------------</p>
+                
             </span>
         </div>
     </body>

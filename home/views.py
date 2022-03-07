@@ -140,7 +140,8 @@ def quizQuery(request):
             quiz1=QuizFinal.objects.create(tutor=first,nameOfQuiz=nameQuiz,timeStamp=datetime.now(),bool=False)
             first.save()
             quiz1.save()
-            return render(request, "quizEditor.html",{'nameOfQuiz':nameQuiz})
+            print(quiz1.code)
+            return render(request, "quizEditor.html",{'nameOfQuiz':nameQuiz,"quizCode":quiz1.code})
         else:
             if (is_valid_uuid(nameQuiz)):
                 quiz1=QuizFinal.objects.filter(code=nameQuiz)
@@ -219,7 +220,7 @@ def handleMultipleChoice(request):
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
         question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer),label=label)
         question1.save()
-        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
+        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code})
 
 def subjective(request):
     return render(request, "subjective.html")
@@ -229,6 +230,8 @@ def handleSubjective(request):
         answerHere=request.POST.get('answerHere')
         marks=request.POST.get('marks')
         timer=request.POST.get('timer')
+        label=request.POST.get('label')
+
         if marks==None or len(marks)==0 or marks==" ":
             marks=10
         if timer==None or len(timer)==0 or timer==" ":
@@ -236,9 +239,9 @@ def handleSubjective(request):
         current_user=request.user
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
-        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,ans=answerHere, number=1,marks=int(marks),questionTimer=int(timer))
+        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,ans=answerHere, number=1,marks=int(marks),questionTimer=int(timer),label=label)
         question1.save()
-        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
+        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code})
 
 def handlePoll(request):
     return render(request,"poll.html")
@@ -252,6 +255,7 @@ def handlePollCreator(request):
         
         marks=request.POST.get('marks')
         timer=request.POST.get('timer')
+        label=request.POST.get('label')
         op1Select=request.POST.get('op1Select')
         op2Select=request.POST.get('op2Select')
         op3Select=request.POST.get('op3Select')
@@ -263,9 +267,9 @@ def handlePollCreator(request):
         current_user=request.user
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
-        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,marks=int(marks),questionTimer=int(timer))
+        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,marks=int(marks),questionTimer=int(timer),label=label)
         question1.save()
-        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
+        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code})
 
 def handleImport(request):
     return render(request,"importSpreadsheet.html")
@@ -326,7 +330,7 @@ def handleImportSpreadsheet(request):
         quiz1.quizTimer=quizTime
         quiz1.save()
         print(quiz1.quizTimer)
-        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz})
+        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code})
 
         # file=pd.read_excel(my_uploaded_file)
         # ques=list(file['Question Text'])
@@ -589,5 +593,31 @@ def newHandleAnswerResponse(request):
                 
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
 
+@csrf_exempt
 def handlePreview(request):
-    return render(request,"preview.html")
+    if request.method=="POST":
+        quizCode=request.POST.get('quizCode')
+        quiz2=QuizFinal.objects.filter(code=quizCode)
+        quiz=QuizFinal.objects.filter(code=quizCode)[0]
+        questions=list(QuestionFinal.objects.filter(tutor=quiz))
+        return render(request,"preview.html",{'questions':questions,'quizCode':quizCode,'quiz':quiz})
+
+@csrf_exempt
+def handleDelQuestion(request):
+    if request.method=="POST":
+        quizCode=request.POST.get('quizCode')
+        que=request.POST.get('questionHere')
+
+        quiz2=QuizFinal.objects.filter(code=quizCode)
+        quiz=QuizFinal.objects.filter(code=quizCode)[0]
+        question=QuestionFinal.objects.filter(tutor=quiz,que=que)[0]
+        question.delete()
+        questions=list(QuestionFinal.objects.filter(tutor=quiz))
+        return render(request,"preview.html",{'questions':questions,'quizCode':quizCode,'quiz':quiz})
+
+def handleAddNewQuestion(request):
+    if request.method=="POST":
+        quizCode=request.POST.get('quizCode')
+        quiz2=QuizFinal.objects.filter(code=quizCode)
+        quiz=QuizFinal.objects.filter(code=quizCode)[0]
+        return render(request, "quizEditor.html",{'nameOfQuiz':quiz,"quizCode":quiz.code})

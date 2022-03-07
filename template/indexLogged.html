@@ -712,6 +712,11 @@ element.style {
               
             </form>
             {% endif %}
+            <form method="post" action="/handlePreview" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizCode" name="quizCode" value={{j.code}}>
+              <a href="/handlePreview"><button type="submit" class="btn center">Preview Quiz</button></a> 
+            </form>
             {% if j.bool %}
           
             <p style="font-size:15px;text-align:left;">Code: {{j.code}}</p>

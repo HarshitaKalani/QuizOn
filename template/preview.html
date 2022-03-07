@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="static\assets\preview\questionPreviewBox.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+        <h2 style="text-align:center;">{{quiz}}</h2>
+        <h5 style="text-align:center;"><b>QuizCode:</b>{{quizCode}}</h5>
+        <form method="post" action="/handleAddNewQuestion" autocomplete="off"> 
+            {% csrf_token %}
+            <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
+            <a href="/handleAddNewQuestion"><button class="btn">Add Question</button></a>
+        </form>
+        {% for i in questions %}
+        <div class="box">
+              {% comment %} <h2 class="center">{{questions}}</h2>
+              <form method="post" action="/quizQuery" class="log-in">
+                  {% csrf_token %}
+                  <div class="floating-label">
+                      <input class="text-center"placeholder="     {{NameOfTheQuiz}}" type="text" name="nameQuiz" id="nameQuiz" autocomplete="off">
+                      <label for="floatingInput"></label>
+                    </div>
+                  <button class="btn center" type="submit"  href="/quizQuery">{{create}}</button>
+                  
+              </form> {% endcomment %}
+              <p style="font-size:16px;"><b>Question {{forloop.counter}}: </b>{{i.que}}</p>
+              <ol>
+                {% if i.op1|length > 1%}
+                <li>{{i.op1}}</li>
+                {% endif %}
+                {% if i.op2|length > 1 %}
+                <li>{{i.op2}}</li>
+                {% endif %}
+                {% if i.op3|length > 1 %}
+                <li>{{i.op3}}</li>
+                {% endif %}
+                {% if i.op4|length > 1 %}
+                <li>{{i.op4}}</li>
+                {% endif %}
+                {% if i.op5|length > 1 %}
+                <li>{{i.op5}}</li>
+                {% endif %}
+              </ol> 
+              {% if i.ans|length > 1 %}
+              <p style="font-size:16px;"><b>Answers: </b>{{i.ans}}</p>
+              {% else %}
+              <p style="font-size:16px;"><b>Answers: </b>Open Ended</p>
+              {% endif %}
+              <div class="floating-label" style="position:relative; top:-3%;left:1%;">
+                <form method="post" action="/handleDelQuestion" autocomplete="off"> 
+                    {% csrf_token %}
+                    <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
+                    <input type="hidden" id="questionHere" name="questionHere" value="{{i.que}}"></input>
+
+                    <a href="/handleDelQuestion"><button type="hidden">
+                        <i class="fa fa-trash"></i>
+                    </button></a>
+                </form>
+            </div>
+          </div>
+
+          {% endfor %}
+    </body>
+
+</html>
