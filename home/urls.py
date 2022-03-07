@@ -31,6 +31,8 @@ urlpatterns = [
     path("handleAnswerResponse" ,views.handleAnswerResponse, name='handleAnswerResponse'),
     path("handleSave" ,views.handleSave, name='handleSave'),
     path("newHandleAnswerResponse" ,views.newHandleAnswerResponse, name='newHandleAnswerResponse'),
+    path("handlePreview" ,views.handlePreview, name='handlePreview'),
+
 
 
 

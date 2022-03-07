@@ -588,3 +588,6 @@ def newHandleAnswerResponse(request):
                         marks+=i.marks
                 
             return render(request,"result.html",{"percentage":(marks/total_marks)*100,})
+
+def handlePreview(request):
+    return render(request,"preview.html")
