@@ -289,6 +289,10 @@ def handleImportSpreadsheet(request):
                 options=[]
                 timer=imported_data['Time in seconds'][i]
                 quizTime+=int(timer)
+                if imported_data['label'][i] is not None:
+                    label=imported_data['label'][i]
+                else:
+                    label="Null"
                 if(imported_data['Option 1'][i] is not None):
                     options.append(imported_data['Option 1'][i])
                 if(imported_data['Option 2'][i] is not None):
@@ -305,19 +309,19 @@ def handleImportSpreadsheet(request):
                         ansHere+=options[int(ans[j])-1]
                         ansHere+=";"
                 if(len(options)==0):
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer,ans=ansHere)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),number=1, questionTimer=timer,ans=ansHere,label=label)
                     question1.save()
                 elif len(options)==1:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1, questionTimer=timer,ans=ansHere)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],number=1, questionTimer=timer,ans=ansHere,label=label)
                     question1.save()
                 elif len(options)==2:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1, questionTimer=timer,ans=ansHere)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],number=1, questionTimer=timer,ans=ansHere,label=label)
                     question1.save()
                 elif len(options)==3:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1, questionTimer=timer,ans=ansHere)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],number=1, questionTimer=timer,ans=ansHere,label=label)
                     question1.save()
                 elif len(options)==4:
-                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer,ans=ansHere)
+                    question1=QuestionFinal.objects.create(tutor=quiz1,que=(imported_data['Question Text'][i]),op1=options[0],op2=options[1],op3=options[2],op4=options[3],number=1, questionTimer=timer,ans=ansHere,label=label)
                     question1.save()
         quiz1.quizTimer=quizTime
         quiz1.save()
