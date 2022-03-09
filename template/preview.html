@@ -13,16 +13,32 @@
     flex-direction: column;
 }</style> </head>
     <body>
-        <h2 style="text-align:center;">{{quiz}}</h2>
-        <h5 style="text-align:center;"><b>QuizCode:</b>{{quizCode}}</h5>
-        <div style="padding-bottom:3px;">
-        <form method="post" action="/handleAddNewQuestion" autocomplete="off"> 
+        <span style="float:right">
+          <a href="/handleSave"><button type="submit" class="btn">Save</button></a>
+          
+        </span>
+         
+        <span style="float:left;width:15%;">
+          <form method="post" action="/handleAddNewQuestion" autocomplete="off" style="width:80%;"> 
             {% csrf_token %}
             <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
-            <a href="/handleAddNewQuestion"><button class="btn">Add Question</button></a>
- 
+            <a href="/handleAddNewQuestion"><button class="btn" style="margin-left:0px;">Add Question</button></a>
+            
         </form>
-      </div>
+        </span>
+         
+        <h2 style="text-align:center;">{{quiz}}</h2>
+        <h5 style="text-align:center;"><b>QuizCode:</b>{{quizCode}}</h5>
+        <span style="padding-bottom:3px;">
+        {% comment %} <form method="post" action="/handleAddNewQuestion" autocomplete="off" style="width:80%;"> 
+            {% csrf_token %}
+            <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
+            <a href="/handleAddNewQuestion"><button class="btn" style="margin-left:0px;">Add Question</button></a>
+            
+        </form> {% endcomment %}
+        
+        
+        </span>
         {% for i in questions %}
         <div class="box">
               {% comment %} <h2 class="center">{{questions}}</h2>
@@ -53,10 +69,7 @@
                     <b>Time: </b>{{i.questionTimer}}s |
                     <b>Label:</b> {{i.label}} |
                    <b> Marks:</b> {{i.marks}} 
-               
-                 
-               
-            </span>
+                </span>
 
             </p>
               
@@ -89,7 +102,13 @@
           </div>
 
           {% endfor %}
-          <a href="/handleSave"><button type="submit" class="btn">Save</button></a>
+          {% comment %} <a href="/handleSave"><button type="submit" class="btn">Save</button></a> {% endcomment %}
+          <form method="post" style="float:right;" action="/handleStartQuiz" class="log-in">
+            {% csrf_token %}
+            <input type="hidden" id="quizCheck" name="quizCheck" value={{quizCode}}>
+            
+          <a href="/handleStartQuiz" ><button type="submit" class="btn">Start</button></a>
+          </form>
         </body>
 
 </html>

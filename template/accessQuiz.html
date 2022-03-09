@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="static\assets\preview\questionPreviewBox.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <style>.box{
+    width:80%;height:220px;
+    margin-left:20px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.082);
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+}</style> </head>
+    <body>
+        <h2 style="text-align:center;">{{quiz}}</h2>
+        <h5 style="text-align:center;"><b>QuizCode:</b>{{quizCode}}</h5>
+        <h5 style="text-align:center;"><b>Your Percentage:</b>{{percentage}}</h5>
+      </div>
+        {% for i in answer %}
+            <div class="box">
+              <p style="font-size:16px;text-align:left;"><b>Question {{forloop.counter}}: </b>{{i.question.que}}
+              </p>
+              
+             
+              <ol>
+                {% if i.question.op1|length > 1%}
+                <li>{{i.question.op1}}</li>
+                {% endif %}
+                {% if i.question.op2|length > 1 %}
+                <li>{{i.question.op2}}</li>
+                {% endif %}
+                {% if i.question.op3|length > 1 %}
+                <li>{{i.question.op3}}</li>
+                {% endif %}
+                {% if i.question.op4|length > 1 %}
+                <li>{{i.question.op4}}</li>
+                {% endif %}
+                {% if i.question.op5|length > 1 %}
+                <li>{{i.question.op5}}</li>
+                {% endif %}
+              </ol>   
+              {% if i.question.ans|length > 1 %}
+              <p style="font-size:16px;"><b>Correct Answers: </b>{{i.question.ans}}</p>
+              <p style="font-size:16px;"><b>Your Answers: </b>{{i.answer}}</p>
+
+              {% else %}
+              <p style="font-size:16px;"><b>Tentaive Answer: </b>Open Ended</p>
+              <p style="font-size:16px;"><b>Your Answer: </b>{{i.answer}}</p>
+
+              {% endif %}
+            </div>
+        {% endfor %}
+        <a href="/handleSave"><button type="submit" class="btn">Back</button></a>
+        </body>
+
+</html>

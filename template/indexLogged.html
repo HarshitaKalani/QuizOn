@@ -16,6 +16,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
+    .box{
+      width:250px;height:250px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.082);
+      border-radius:20px;
+      display: flex; justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top:10px;
+      margin-right:10px;
+  }
     .butt{
       margin:0px;
     }
@@ -685,7 +695,7 @@ element.style {
 </span></div></div> </div></div></div>
  <div class="wrapper" style="color:black;position:absolute;left:250px;">
   {% comment %} <div class="grid-item mt-10" style="color:black;left:100px;"> {% endcomment %}
-    
+        {% if bool %}
         {% for i in quizes %}
         
           <div class="box">
@@ -727,6 +737,20 @@ element.style {
           </div>
         
         {% endfor %}
+        {% else %}
+          {% for i in quizes %}
+          <div class="box">
+            <p style="font-size:15px;text-align:left;">Name: {{i.nameOfQuiz}}</p>
+            <p style="font-size:15px;text-align:left;">isActive: {{i.bool}}</p>
+            <form method="post" action="/handleAccessQuiz" class="log-in">
+              {% csrf_token %}
+              <input type="hidden" id="quizCode" name="quizCode" value={{i.code}}>
+            <a href="handleAccessQuiz"><button type="submit" class="btn center">Access Quiz</button></a> 
+            </form>
+          </div>
+          {% endfor %}
+        {% endif %}
+
       
   {% comment %} </div> {% endcomment %}
 </div>
@@ -788,7 +812,13 @@ element.style {
 <span class="nav-text">Contact</span>
 </a>
 </li>   
-  
+
+<li>                                 
+  <a href="handleMyQuizes">
+  <i class="fa fa-envelope-o fa-lg"></i>
+  <span class="nav-text">MyQuizes</span>
+  </a>
+  </li>
 
 
  

@@ -42,18 +42,14 @@ def loginuser(request):
                     quiz1=QuizFinal.objects.filter(tutor=i)
                     quizes.append(quiz1)
                 quizes.reverse()
-                return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+                return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),"bool":True})
             else:
-                # current_student=list(StudentFinal.objects.filter(nameOfStudent=user.username))
-                # quiz=QuizFinal.objects.all()
-                # quizes=[]
-                # for i in quiz.iterator():
-                #     if (current_student.quiz==i):
-                #         quizes.append(i)
-                #     quizes.reverse()
-                # print(quizes)
-                # return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Student Here!","YourQuizes":"Attempted Quizes","quizes":(quizes),"len":len(quizes)})
-                return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Join Quiz"})
+                current_student=list(StudentFinal.objects.filter(nameOfStudent=user.username))
+                quizes=[]
+                for i in current_student:
+                    quizes.append(i.quiz)
+                return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Attempted Quizes","quizes":(quizes),"len":len(quizes),"bool":False})
+                
         else:
             return render(request,"login.html")
     else:
@@ -120,13 +116,27 @@ def CreateQuiz(request):
 def handleSave(request):
     user=request.user
     login(request,user, backend='django.contrib.auth.backends.ModelBackend')
-    first=AllQuizes.objects.filter(tutorName=user)
-    quizes=[]
-    for i in first.iterator():
-        quiz1=QuizFinal.objects.filter(tutor=i)
-        quizes.append(quiz1)
-    quizes.reverse()
-    return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+    # first=AllQuizes.objects.filter(tutorName=user)
+    # quizes=[]
+    # for i in first.iterator():
+    #     quiz1=QuizFinal.objects.filter(tutor=i)
+    #     quizes.append(quiz1)
+    # quizes.reverse()
+    # return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+    if(user.is_superuser):
+        first=AllQuizes.objects.filter(tutorName=user)
+        quizes=[]
+        for i in first.iterator():
+            quiz1=QuizFinal.objects.filter(tutor=i)
+            quizes.append(quiz1)
+        quizes.reverse()
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),"bool":True})
+    else:
+        current_student=list(StudentFinal.objects.filter(nameOfStudent=user.username))
+        quizes=[]
+        for i in current_student:
+            quizes.append(i.quiz)
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Attempted Quizes","quizes":(quizes),"len":len(quizes),"bool":False})
 def contact(request):
     return render (request, "contact.html")
 def is_valid_uuid(value):
@@ -160,6 +170,9 @@ def quizQuery(request):
                     student1.save()
                     questions=list(QuestionFinal.objects.filter(tutor=quiz2))
                     # stud=StudentFinal.objects.filter(quiz=quiz2)
+                    total_timer=0
+                    for i in questions:
+                        total_timer+=i.questionTimer
                     optionHere=[]
                     op1=questions[0].op1
                     op2=questions[0].op2
@@ -173,7 +186,7 @@ def quizQuery(request):
                     opLengthBool=True
                     if (len(optionHere)!=0):
                         opLengthBool=False
-                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":quiz2.quizTimer,"quizCode":nameQuiz,"opLengthBool":opLengthBool,"opLength":len(optionHere),})
+                    return render(request,"quizStarted.html",{"que":questions[0],"options":optionHere,"code":quiz2.code,"questionIndex":0, "timer": questions[0].questionTimer, "quizTime":total_timer,"quizCode":nameQuiz,"opLengthBool":opLengthBool,"opLength":len(optionHere),})
                 else:
                     messages.add_message(request,messages.INFO,"Enter the code Correctly!!")
                     return render(request,"createQuiz.html",{"createQuiz":"Join Quiz","NameOfTheQuiz": "Code of the Quiz", "create": "Join"})
@@ -368,7 +381,7 @@ def handleStartQuiz(request):
             quiz2=QuizFinal.objects.filter(tutor=i)
             quizes.append(quiz2)
         quizes.reverse()
-        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),})
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),'bool':True})
 
 def handleEndQuiz(request):
     if request.method=="POST":
@@ -381,7 +394,7 @@ def handleEndQuiz(request):
             quiz2=QuizFinal.objects.filter(tutor=i)
             quizes.append(quiz2)
         quizes.reverse()
-        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
+        return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes),'bool':True})
 
 # def handleRedirect(request):
 #     if request.method=='POST':
@@ -558,6 +571,9 @@ def newHandleAnswerResponse(request):
         index=int(request.POST.get('questionIndex'))+1
         quiz2=QuizFinal.objects.filter(code=code)[0]
         questions=list(QuestionFinal.objects.filter(tutor=quiz2))
+        total_timer=0
+        for i in questions:
+            total_timer+=i.questionTimer
         # stud=StudentFinal.objects.filter(quiz=quiz2)
         if(quiz2.bool==True and index<len(questions)):
             optionHere=[]
@@ -571,7 +587,7 @@ def newHandleAnswerResponse(request):
                     optionHere.append(i)
             # print(len(optionHere))
             # print(questions[index].questionTimer)
-            totalTime=quiz2.quizTimer-questions[index-1].questionTimer
+            totalTime=total_timer-questions[index-1].questionTimer
             # print(curr_time)
             # print(type(curr_time))
             # totalTime=quiz2.quizTimer
@@ -622,7 +638,7 @@ def handleDelQuestion(request):
         question=QuestionFinal.objects.filter(tutor=quiz,que=que)[0]
         question.delete()
         questions=list(QuestionFinal.objects.filter(tutor=quiz))
-        return render(request,"preview.html",{'questions':questions,'quizCode':quizCode,'quiz':quiz})
+        return render(request,"preview.html",{'questions':questions,'quizCode':quizCode,'quiz':quiz,"bool":True})
 
 def handleAddNewQuestion(request):
     if request.method=="POST":
@@ -630,3 +646,41 @@ def handleAddNewQuestion(request):
         quiz2=QuizFinal.objects.filter(code=quizCode)
         quiz=QuizFinal.objects.filter(code=quizCode)[0]
         return render(request, "quizEditor.html",{'nameOfQuiz':quiz,"quizCode":quiz.code})
+
+def handleMyQuizes(request):
+    user=request.user
+    current_student=list(StudentFinal.objects.filter(nameOfStudent=user.username))
+    quizes=[]
+    for i in current_student:
+        quizes.append(i.quiz)
+    return render(request,"indexLogged.html",{"username":user.username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Attempted Quizes","quizes":(quizes),"len":len(quizes),"bool":False})
+
+def handleAccessQuiz(request):
+    if request.method=="POST":
+        quizCode=request.POST.get('quizCode')
+        quiz2=QuizFinal.objects.filter(code=quizCode)
+        quiz=QuizFinal.objects.filter(code=quizCode)[0]
+        studentHere=StudentFinal.objects.filter(quiz=quiz,nameOfStudent=request.user.username)[0]
+        answerGiven=list(AnswerFinal.objects.filter(quiz=quiz,student=studentHere))
+        
+
+        code=request.POST.get('quizCode')
+        quiz2=QuizFinal.objects.filter(code=code)[0]
+        questions=QuestionFinal.objects.filter(tutor=quiz2)
+        user=request.user
+        student=StudentFinal.objects.filter(quiz=quiz2,nameOfStudent=user.username)
+        for j in student.iterator():
+            marks=0
+            
+            total_marks=0
+            for i in questions.iterator():
+                total_marks+=i.marks
+                answ=AnswerFinal.objects.filter(quiz=quiz2,question=i, student=j)[0]
+                # print(i.ans)
+                # print(answ.answer)
+                if(str(i.ans)!=" " and len(str(i.ans))!=0):
+                    if((i.ans)==str(answ.answer)):
+                        marks+=i.marks
+                else:
+                    marks+=i.marks
+        return render(request,"accessQuiz.html",{'quizCode':quizCode,'quiz':quiz,'answer':answerGiven,"percentage":(marks/total_marks)*100,})

@@ -34,6 +34,10 @@ urlpatterns = [
     path("handlePreview" ,views.handlePreview, name='handlePreview'),
     path("handleDelQuestion" ,views.handleDelQuestion, name='handleDelQuestion'),
     path("handleAddNewQuestion" ,views.handleAddNewQuestion, name='handleAddNewQuestion'),
+    path("handleMyQuizes" ,views.handleMyQuizes, name='handleMyQuizes'),
+    path("handleAccessQuiz" ,views.handleAccessQuiz, name='handleAccessQuiz'),
+
+
 
 
 
