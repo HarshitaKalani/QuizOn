@@ -231,7 +231,7 @@
   <div class="floating-label">
     <a href="/handleMultipleChoice"><button type="submit" class="btn">Save</button></a>
   </div>
-    <button type="hidden" class="btnD" onclick="disp();return false;">Display Ques</button>
+    <button type="hidden" class="btnD" onclick="disp();return false;"><p id="p2">Display Ques</p></button>
   </div>
   
   <script>
@@ -389,8 +389,17 @@
         }
       }
       function disp(){
+        var x=document.getElementById("p2").innerHTML
+        if(x=="Hide Display"){
+          var z=document.getElementById('equation');
+          z.style.display="none";
+          document.getElementById("p2").innerHTML="Display Ques";
+        }
+        else{
           var z=document.getElementById('equation');
           z.style.display="block";
+          document.getElementById("p2").innerHTML="Hide Display";
+        }
       }
 
     </script>
