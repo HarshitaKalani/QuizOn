@@ -148,20 +148,23 @@
         <div class="boxRight" style="height:250px;">
             <br>
             <h2 style="text-align:center;" >{{nameOfQuiz}}</h2>
-            <p>-----------------------------------------------------------------</p>
+            
+             <p>-----------------------------------------------------------------</p> 
+            
 
             <span>
 
                 <h5 style="padding-left:10px;" >Default Timer :</h5>
                 
                 <a href="/handleImport"><h5 style="padding-left:10px; padding-top:10px;">  Import From Spreadsheet </h5></a>
-                <a href="/"><h5 style="padding-left:10px; padding-top:10px;">  Add grades </h5></a>
+
                 <form method="post" action="/handlePreview" autocomplete="off"> 
                     {% csrf_token %}
                     <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
-                    <a id="main-nav-contact-btn" class="nav-menu-item" href="/handlePreview"><h2 style="text-align:center;color:black;" ><button type="submit" class="filter git">Preview Quiz</button></h2></a>
+                    <a id="main-nav-contact-btn" class="nav-menu-item" href="/handlePreview"><h4 style="text-align:center;color:black;" ><button type="submit" class="filter git">Preview Quiz</button></h4></a>
                 </form>
                 <p>{{quizCode}}</p>
+                
                 <p>-----------------------------------------------------------------</p>
                 
             </span>

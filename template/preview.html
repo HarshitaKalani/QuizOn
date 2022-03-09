@@ -15,11 +15,14 @@
     <body>
         <h2 style="text-align:center;">{{quiz}}</h2>
         <h5 style="text-align:center;"><b>QuizCode:</b>{{quizCode}}</h5>
+        <div style="padding-bottom:3px;">
         <form method="post" action="/handleAddNewQuestion" autocomplete="off"> 
             {% csrf_token %}
             <input type="hidden" id="quizCode" name="quizCode" value={{quizCode}}></input>
             <a href="/handleAddNewQuestion"><button class="btn">Add Question</button></a>
+ 
         </form>
+      </div>
         {% for i in questions %}
         <div class="box">
               {% comment %} <h2 class="center">{{questions}}</h2>
@@ -86,6 +89,7 @@
           </div>
 
           {% endfor %}
+          <a href="/handleSave"><button type="submit" class="btn">Save</button></a>
     </body>
 
 </html>
