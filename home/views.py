@@ -44,6 +44,15 @@ def loginuser(request):
                 quizes.reverse()
                 return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Teacher Here!","YourQuizes":"Your Quizes","quizes":(quizes),"len":len(quizes)})
             else:
+                # current_student=list(StudentFinal.objects.filter(nameOfStudent=user.username))
+                # quiz=QuizFinal.objects.all()
+                # quizes=[]
+                # for i in quiz.iterator():
+                #     if (current_student.quiz==i):
+                #         quizes.append(i)
+                #     quizes.reverse()
+                # print(quizes)
+                # return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"CreateQuiz","ContentDescription":"Student Here!","YourQuizes":"Attempted Quizes","quizes":(quizes),"len":len(quizes)})
                 return render(request,"indexLogged.html",{"username":username,"CreateQuiz":"JoinQuiz","ContentDescription":"Student Here!","YourQuizes":"Join Quiz"})
         else:
             return render(request,"login.html")
