@@ -212,8 +212,9 @@
   </div>
  <div class="form">  
   <img id="equation" style="display: none"/>
-  <form method="post" action="/handleMultipleChoice" class="log-in" autocomplete="off"> 
+  <form method="post" action="/handleMultipleChoice" class="log-in" autocomplete="off" enctype="multipart/form-data"> 
     {% csrf_token %}
+    
   <div class="box center ">
     
     <p>
@@ -231,7 +232,7 @@
     <div class="floating-label">
     <input placeholder="Timer: in Seconds" type="number" name="timer" class="inputTimer" id="timer" autocomplete="off">
     <input placeholder="label:" type="text" name="label" class="inputLabel" id="label"autocomplete="off" >
-
+     {% comment %} {{form.as_p}} {% endcomment %}
     <input type="file" id="queImage" name="queImage" class="fa fa-upload" style="font-size:16px;float:right;padding-top: 12px;"></input>
   </div>
 
@@ -413,6 +414,11 @@
   </div>
 
 </form>
+<!-- <hr>
+{% if obj %}
+<h3>Successfully uploaded: {{img_obj.caption}}</h3>
+<img src="{{obj.image.url}}" alt="image" class="img-thumbnail">
+{% endif %} -->
  </div>
  
 </body>

@@ -122,7 +122,7 @@ class QuestionFinal(models.Model):
     questionTimer=models.IntegerField(default=10)
     marks=models.IntegerField(default=10)
     que=RichTextField(default=" ")
-    queImage = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default=None)
+    queImage = models.ImageField(upload_to="img/%y", height_field=None, width_field=None, max_length=100, default=None)
     number = models.IntegerField()
     op1=RichTextField(default=" ")
     op2=RichTextField(default=" ")

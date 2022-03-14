@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth import logout,login
 from django.contrib.auth.models import User
-from .forms import StudentForm
+from .forms import StudentForm, ImageForm
 from home.models import Contact
 from django.contrib import messages
 from .models import *
@@ -13,6 +13,7 @@ from .resources import QuestionFinalResource
 from django.contrib import messages
 from tablib import Dataset
 from datetime import *
+
 
 # Create your views here.
 def index(request):
@@ -204,6 +205,8 @@ def handleQuestionCreation(request):
     return render(request,"questionCreator.html", context=mydict)
     
 def handleMultipleChoice(request):
+    customer=request.user
+    form=ImageForm(instance=customer)
     if request.method=="POST":
         questionHere=request.POST.get('questionHere')
         op1Here=request.POST.get('op1Here')
@@ -213,6 +216,7 @@ def handleMultipleChoice(request):
         marks=request.POST.get('marks')
         timer=request.POST.get('timer')
         label=request.POST.get('label')
+        queImage = request.FILES['queImage']
         op1Select=request.POST.get('op1select')
         op2Select=request.POST.get('op2select')
         op3Select=request.POST.get('op3select')
@@ -240,9 +244,18 @@ def handleMultipleChoice(request):
         current_user=request.user
         first=AllQuizes.objects.filter(tutorName=current_user).order_by('-id')[0]
         quiz1=QuizFinal.objects.filter(tutor=first).order_by('-id')[0]
-        question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer),label=label)
-        question1.save()
-        return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code})
+        # dataset=Dataset()
+        # imported_data=dataset.load(queImage.read(), format='jpg')
+      
+        form=ImageForm(request.POST,request.FILES, instance=customer)
+        
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+            question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer),label=label, queImage=queImage)
+            question1.save()
+        
+    return render(request,"quizEditor.html",{'nameOfQuiz':quiz1.nameOfQuiz,"quizCode":quiz1.code, 'form':form})
 
 def subjective(request):
     return render(request, "subjective.html")
