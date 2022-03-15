@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
    <style>.box{
-    width:80%;height:200px;
+    width:80%;height:310px;
     margin-left:20px;
     margin-bottom: 10px;
     box-shadow: 0 0 30px rgba(0,0,0,0.082);
@@ -62,13 +62,17 @@
                 
                 
             </form> 
+            <div class="floating-label" style="position:relative; top:-3%;left:1%;">
+              <img src='/static/images/{{i.queImage}}' alt="...", height="150px", width="150px">
               <p style="font-size:16px;text-align:left;"><b>Question {{forloop.counter}}: </b>{{i.que}} 
+                
          
                 <span style="float:right;font-size:12px;">
                     
                     <b>Time: </b>{{i.questionTimer}}s |
                     <b>Label:</b> {{i.label}} |
                    <b> Marks:</b> {{i.marks}} 
+                   
                 </span>
 
             </p>
@@ -96,12 +100,19 @@
               {% else %}
               <p style="font-size:16px;"><b>Answers: </b>Open Ended</p>
               {% endif %}
-              <div class="floating-label" style="position:relative; top:-3%;left:1%;">
-              
+              {% comment %} <div class="floating-label" style="position:relative; top:-3%;left:1%;">
+                <img src='/static/images/{{i.queImage}}' alt="...", height="100px", width="60px"> {% endcomment %}
+                {% comment %} print({{i.queImage.url}})  {% endcomment %}
             </div>
           </div>
-
+          
+          <!-- {% if obj %}
+          <img src="{{form.queImage.url}}" alt="queImage" class="img-thumbnail">
+          {% endif %} -->
           {% endfor %}
+         
+          
+          
           {% comment %} <a href="/handleSave"><button type="submit" class="btn">Save</button></a> {% endcomment %}
           <form method="post" style="float:right;" action="/handleStartQuiz" class="log-in">
             {% csrf_token %}

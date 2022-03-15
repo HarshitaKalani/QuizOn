@@ -251,7 +251,7 @@ def handleMultipleChoice(request):
         
         if form.is_valid():
             form.save()
-            obj=form.instance
+            # obj=form.instance
             question1=QuestionFinal.objects.create(tutor=quiz1,que=questionHere,op1=op1Here,op2=op2Here,op3=op3Here,op4=op4Here,number=1,ans=ansHere,marks=int(marks),questionTimer=int(timer),label=label, queImage=queImage)
             question1.save()
         
