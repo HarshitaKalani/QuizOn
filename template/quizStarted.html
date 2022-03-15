@@ -51,15 +51,21 @@
     </head>
     <body>
         <div class="box " style="margin-left: 28px;">
+          
             <h2 class="center">
+            
+              <div class="floating-label">
+            {% if que.queImage|length > 1%}
+            <img src='/static/images/{{que.queImage}}' alt="...", height="150px", width="150px">
+            {% endif %}
+          </div>
+              
               {{que.que}}
               <input type="hidden" id="optionsHereScript" name="optionsHereScript" value="{{options}}">
             </h2>
               <h2 class="center"></h2>
               
-                <div class="floating-label">
-                    
-                </div>
+                
                   
           </div>
           <div class="boxQuestionTimer" style="position: absolute;left:10px;">
@@ -237,9 +243,11 @@
             console.log(divHere);
             var pHere=document.querySelectorAll(".limit");
             for (var i=0;i<opt;i=i+1){
-              console.log(optionHere[i]);
-              divHere[i].style.display="block";
-              pHere[i].innerHTML=optionHere[i];
+              console.log(optionHere[i].length);
+              if(optionHere[i].length>3){
+                divHere[i].style.display="block";
+                pHere[i].innerHTML=optionHere[i];
+              }
             }
            setInterval(function(){
               x=x-1;
