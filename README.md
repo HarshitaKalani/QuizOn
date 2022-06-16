@@ -32,10 +32,10 @@ git clone https://github.com/HarshitaKalani/QuizOn.git
 Step 2: \
 Run the migration to create database schema:
 ```
-python manage.py migrations
-```
-```
 python manage.py makemigrations
+```
+```
+python manage.py migrate
 ```
 Step 3: \
 Run the project by executing the below piece of code in console:
