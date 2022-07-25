@@ -1,0 +1,9 @@
+Django==4.0.6
+django_ckeditor==6.4.2
+django_import_export==2.8.0
+django_mysql==4.7.0
+djangorestframework==3.13.1
+import_export==0.2.67.dev6
+numpy==1.21.5
+pandas==1.4.2
+tablib==3.2.1
