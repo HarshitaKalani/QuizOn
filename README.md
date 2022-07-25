@@ -49,11 +49,7 @@ You're done!
 - Video questions
 - Attractive UI
 
-## Collaborators:
-| Name | Year | Branch|
-| ------------- | ------------- | ------------- |
-| Pranav Goswami (B20CS016) | Sophomore  | CSE |
-| Harshita Kalani (B20CS019)  | Sophomore  | CSE |
+
 
 
 
